@@ -1,0 +1,192 @@
+<nav id="sidebar">
+    <div class="p-4 pt-5">
+        <a href="#" class="img logo rounded-circle mb-5" style="background-image: url({{asset('assets/backend/images/'.Auth::user()->image)}});"></a>
+        <h4 class="text-center" style="color: white;">{{Auth::user()->name}}</h4>
+        <ul class="list-unstyled components mb-5">
+            <!-- ===================Start author Side bar ============================  -->
+
+            @if(Request::is('admin*'))
+
+                <li class="{{ Request::is('admin/dashboard') ? 'active' : '' }}">
+                    <a href="{{route('admin.dashboard')}}">
+                        <i class="material-icons">dashboard</i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="staffing">
+                    <a href="#staffingSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Staffing</a>
+                    <ul class="collapse list-unstyled" id="staffingSubmenu">
+                        <li>
+                            <a href="{{route('admin.job.create')}}">Job Requisition</a>
+                        </li>
+                        <li>
+                            <a href="">CV Bank</a>
+                        </li>
+                        <li>
+                            <a href="">Assessment</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="leave">
+                    <a href="#leaveSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Leave</a>
+                    <ul class="collapse list-unstyled" id="leaveSubmenu">
+                        <li>
+                            <a href="{{route('admin.leave.list')}}">Application List</a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.leave.index')}}">Own Application</a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.leave.create')}}">Leave Application </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="leave">
+                    <a href="#attendanceSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Attendance</a>
+                    <ul class="collapse list-unstyled" id="attendanceSubmenu">
+                        <li>
+                            <a href="">Attendance</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="leave-type">
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Leave Type</a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li>
+                            <a href="{{route('admin.leaveType.index')}}">Leave Type List</a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.leaveType.create')}}">Create Leave Type</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="leave-type">
+                    <a href="#depSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Department</a>
+                    <ul class="collapse list-unstyled" id="depSubmenu">
+                        <li>
+                            <a href="{{route('admin.department.index')}}">Department List</a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.department.create')}}">Create Department</a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                        <i class="material-icons">input</i>
+                        <span>logout</span>
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </li>
+
+        @endif
+
+        <!-- ================End Admin Side bar ============================  -->
+
+            <!-- ===================Start User Side bar ============================  -->
+
+            @if(Request::is('user*'))
+
+                <li class="{{ Request::is('user/dashboard') ? 'active' : '' }}">
+                    <a href="{{route('user.dashboard')}}">
+                        <i class="material-icons">dashboard</i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Leave</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a href="{{route('user.leave.index')}}">Own Application</a>
+                        </li>
+                        <li>
+                            <a href="{{route('user.leave.create')}}">Leave Application </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                        <i class="material-icons">input</i>
+                        <span>logout</span>
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </li>
+
+        @endif
+
+        <!-- ================End User Side bar ============================  -->
+            <!-- ===================Start User Side bar ============================  -->
+
+            @if(Request::is('applicant*'))
+
+                <li class="{{ Request::is('applicant/dashboard') ? 'active' : '' }}">
+                    <a href="{{route('applicant.dashboard')}}">
+                        <i class="material-icons">dashboard</i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                        <i class="material-icons">input</i>
+                        <span>logout</span>
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </li>
+
+        @endif
+
+        <!-- ================End User Side bar ============================  -->
+            <li class="">
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li>
+                        <a href="#">Home 1</a>
+                    </li>
+                    <li>
+                        <a href="#">Home 2</a>
+                    </li>
+                    <li>
+                        <a href="#">Home 3</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">About</a>
+            </li>
+
+
+            <li>
+                <a href="#">Portfolio</a>
+            </li>
+            <li>
+                <a href="#">Contact</a>
+            </li>
+        </ul>
+
+        <div class="footer">
+            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+        </div>
+
+    </div>
+</nav>
