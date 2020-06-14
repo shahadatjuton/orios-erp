@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\SuperAdmin;
 
-use App\Department;
+use App\Application;
 use App\Http\Controllers\Controller;
 use App\Job;
+use App\Leave;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
-class JobController extends Controller
+class LeaveApplicationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +18,8 @@ class JobController extends Controller
      */
     public function index()
     {
-        $jobs = Job::all();
-        return view('admin.staffing.cv',compact('jobs'));
+        $applications = Leave::where('for','superadmin')->get();
+        return view('superadmin.leaveApplication',compact('applications'));
     }
 
     /**
@@ -28,8 +29,7 @@ class JobController extends Controller
      */
     public function create()
     {
-        $data = Department::all();
-        return view('admin.staffing.job',compact('data'));
+        //
     }
 
     /**
@@ -40,30 +40,7 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
-
-
-        $this->validate($request,[
-            'designation'=>'required',
-            'departments'=>'required',
-            'circular'=>'required',
-            'deadline'=>'required',
-            'experience'=>'required',
-            'vacancy'=>'required',
-            'description'=>'required',
-        ]);
-
-        $job =new Job();
-
-        $job->department_id =implode(',',$request->departments);
-        $job->experience =$request->experience;
-        $job->vacancy =$request->vacancy;
-        $job->designation =$request->designation;
-        $job->circular =$request->circular;
-        $job->deadline =$request->deadline;
-        $job->description =$request->description;
-        $job->save();
-        Toastr::success('Job Requisition created successfully', 'success');
-        return redirect()->route('admin.dashboard');
+        //
     }
 
     /**
@@ -74,7 +51,8 @@ class JobController extends Controller
      */
     public function show($id)
     {
-        //
+        $leave = Leave::findOrFail($id);
+        return view('superadmin.leaveShow',compact('leave'));
     }
 
     /**
@@ -97,7 +75,12 @@ class JobController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $leave = Leave::findOrFail($id);
+        $leave->status = 1;
+        $leave->save();
+        Toastr::success('Application is accepted successfully!!','Success');
+        return redirect()->back();
     }
 
     /**
@@ -109,5 +92,15 @@ class JobController extends Controller
     public function destroy($id)
     {
         //
+
     }
+
+    public function reject(Request $request, $id)
+    {
+        $application = Leave::find($id);
+        $application->status = 2;
+        $application->save();
+        return redirect()->back();
+    }
+
 }

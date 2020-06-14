@@ -1,6 +1,6 @@
 @extends('layouts.backend.master')
 
-@section('title', 'Leave-Application')
+@section('title', 'Leave -Applications')
 
 @push('css')
 
@@ -10,7 +10,14 @@
 
 @section('content')
 
+
     <div class="container-fluid">
+        <div class="block-header">
+            <h2>
+                CV Bank
+            </h2>
+        </div>
+
         <!-- Exportable Table -->
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -50,7 +57,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a class="btn btn-info waves-effect" href="{{route('admin.leave.show', $application->id)}}">
+                                            <a class="btn btn-info waves-effect" href="{{route('superadmin.leaveApplication.show', $application->id)}}">
                                                 <i class="material-icons">visibility </i>
                                             </a>
 
@@ -58,7 +65,7 @@
                                                 <i class="material-icons">done </i>
                                             </button>
 
-                                            <form  id="approve-application-{{$application->id}}" action="{{route('admin.application.update', $application->id)}}"
+                                            <form  id="approve-application-{{$application->id}}" action="{{route('superadmin.leaveApplication.update', $application->id)}}"
                                                    method="post" style="display:none;"
                                             >
                                                 @csrf
@@ -70,7 +77,7 @@
                                                 <i class="material-icons">reject </i>
                                             </button>
 
-                                            <form  id="reject-application-{{$application->id}}" action="{{route('admin.application.reject', $application->id)}}"
+                                            <form  id="reject-application-{{$application->id}}" action="{{route('superadmin.leaveApplication.reject', $application->id)}}"
                                                    method="post" style="display:none;"
                                             >
                                                 @csrf
@@ -95,11 +102,7 @@
 
 @endsection
 
-@push('js')
-
-
 <script type="text/javascript">
-
 
     function rejectApplication(id) {
 
@@ -170,6 +173,11 @@
                 )
             }
         })
+
     }
+
 </script>
+@push('js')
+
+
 @endpush

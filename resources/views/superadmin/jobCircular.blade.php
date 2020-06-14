@@ -1,6 +1,6 @@
 @extends('layouts.backend.master')
 
-@section('title', 'Department')
+@section('title', 'Job-Circulars')
 
 @push('css')
 
@@ -14,12 +14,8 @@
     <div class="container-fluid">
         <div class="block-header">
             <h2>
-                Department Table
+                Job Circulars Table
             </h2>
-            <a class="btn btn-primary waves-effect" href="{{route('admin.department.create')}}">
-{{--                <i class="material-icons">add</i>--}}
-                <span>Create Department</span>
-            </a>
         </div>
 
         <!-- Exportable Table -->
@@ -28,8 +24,8 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            Total Department
-                            <span class="badge bg-blue"ma>{{ $data->count() }}</span>
+                            Total Leave Type
+                            <span class="badge bg-blue">{{ $circulars->count() }}</span>
                         </h2>
                     </div>
                     <div class="body">
@@ -38,34 +34,47 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Leave Type</th>
-                                    <th>Created At </th>
+                                    <th>Designation</th>
+                                    <th>Department</th>
+                                    <th>Experience</th>
+                                    <th>No Of Vacancy</th>
+                                    <th>Circular</th>
+                                    <th>Deadline</th>
+                                    <th>Status</th>
+                                    <th>View</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
-                                @foreach($data as $key=> $data)
+                                @forelse($circulars as $key=> $data)
                                     <tr>
                                         <td>{{ $key +1 }}</td>
-                                        <td>{{$data->name}}</td>
-                                        <td>{{$data->created_at}}</td>
+                                        <td>{{$data->designation}}</td>
+                                        <td>{{$data->department->name}}</td>
+                                        <td>{{$data->experience}}</td>
+                                        <td>{{$data->vacancy}}</td>
+                                        <td>{{$data->circular->diffForHumans()}}</td>
+                                        <td>{{$data->deadline->diffForHumans()}}</td>
                                         <td>
-                                            <a class="btn btn-info waves-effect" href="{{route('admin.department.edit',$data->id)}}">
-                                                <i class="material-icons">edit </i>
-                                            </a>
-                                            <button type="button" name="button"  class="btn btn-danger waves-effect" onclick="deletedepartment({{$data->id}})">
-                                                <i class="material-icons" >delete</i>
-
-                                            </button>
-                                            <form  id="delete-department-{{$data->id}}" action="{{route('admin.department.destroy', $data->id)}}"
-                                                   method="post" style="display:none;"
-                                            >
-                                                @csrf
-                                                @method('DELETE')
-                                            </form>
-
+                                            @if($data->status==true)
+                                             Accepted
+                                             @else
+                                                Pending
+                                            @endif
+                                        </td>
+                                        <td>
+                                        <a class="btn btn-info waves-effect" href="{{route('superadmin.jobCircular.show', $data->id)}}">
+                                            <i class="material-icons">visibility </i>
+                                        </a>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-primary" href="{{route('superadmin.jobCircular.update',$data->id)}}">Confirm</a>
+                                            <a class="btn btn-danger" href="{{route('superadmin.jobCircular.destroy',$data->id)}}">Cancel</a>
                                         </td>
                                     </tr>
-                                    @endforeach
+                                    </tr>
+                                @empty
+                                    <h2 class="bg-danger">There is no data found</h2>
+                                    @endforelse
                                     </thead>
                             </table>
                         </div>
@@ -83,7 +92,7 @@
 
 <script type="text/javascript">
 
-    function deletedepartment(id) {
+    function deleteleavetype(id) {
 
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
@@ -104,7 +113,7 @@
         }).then((result) => {
             if (result.value) {
                 event.preventDefault();
-                document.getElementById('delete-department-' + id).submit();
+                document.getElementById('delete-leave-type-' + id).submit();
             } else if (
                 /* Read more about handling dismissals below */
                 result.dismiss === Swal.DismissReason.cancel

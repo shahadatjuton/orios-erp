@@ -21,22 +21,22 @@
     <div class="container-fluid">
 
         <!-- Vertical Layout | With Floating Label -->
-        <a href="{{ route('admin.application.index')}}" class="btn btn-info waves-effect">BACK</a>
+        <a href="{{ route('superadmin.leaveApplication.index')}}" class="btn btn-info waves-effect">BACK</a>
 
-        @if($leave->status=="")
+        @if($leave->status=="0")
 
-{{--            <button type="button" name="button" class="btn btn-success waves-effect pull-right" onclick="approvePost({{ $leave->id }})">--}}
-{{--                <i class="material-icons">done </i>--}}
-{{--                <span>Approve</span>--}}
-{{--            </button>--}}
+            <button type="button" name="button" class="btn btn-success waves-effect pull-right" onclick="approveLeave({{ $leave->id }})">
+                <i class="material-icons">done </i>
+                <span>Approve</span>
+            </button>
 
-{{--            <form  id="approve-post-{{$leave->id}}" action="{{route('admin.leave.approve', $leave->id)}}"--}}
-{{--                   method="post" style="display:none;"--}}
-{{--            >--}}
-{{--                @csrf--}}
-{{--                @method('PUT')--}}
+            <form  id="approve-leave-{{$leave->id}}" action="{{route('superadmin.leaveApplication.update', $leave->id)}}"
+                   method="post" style="display:none;"
+            >
+                @csrf
+                @method('PUT')
 
-{{--            </form>--}}
+            </form>
 
         @elseif($leave->status==true)
 
@@ -46,7 +46,7 @@
             </button>
         @elseif($leave->status==false)
 
-            <button type="button" name="button" class="bt btn-success pull-right" disabled>
+            <button type="button" name="button" class="bt btn-warning pull-right" disabled>
                 <i class="material-icons">cancel</i>
                 <span>Rejected</span>
             </button>
@@ -115,7 +115,7 @@
 
 <script type="text/javascript">
 
-    function deleteleavetype(id) {
+    function approveLeave(id) {
 
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
@@ -127,16 +127,16 @@
 
         swalWithBootstrapButtons.fire({
             title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            text: "You want to approve this leave application!",
             type: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Yes, delete it!',
+            confirmButtonText: 'Yes, Approve!',
             cancelButtonText: 'No, cancel!',
             reverseButtons: true
         }).then((result) => {
             if (result.value) {
                 event.preventDefault();
-                document.getElementById('delete-leave-type-' + id).submit();
+                document.getElementById('approve-leave-' + id).submit();
             } else if (
                 /* Read more about handling dismissals below */
                 result.dismiss === Swal.DismissReason.cancel

@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Applicant;
 
-use App\Department;
+use App\Application;
 use App\Http\Controllers\Controller;
 use App\Job;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class JobController extends Controller
+class ApplicationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +18,7 @@ class JobController extends Controller
      */
     public function index()
     {
-        $jobs = Job::all();
-        return view('admin.staffing.cv',compact('jobs'));
+        //
     }
 
     /**
@@ -28,8 +28,7 @@ class JobController extends Controller
      */
     public function create()
     {
-        $data = Department::all();
-        return view('admin.staffing.job',compact('data'));
+
     }
 
     /**
@@ -40,30 +39,23 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
-
-
         $this->validate($request,[
             'designation'=>'required',
-            'departments'=>'required',
-            'circular'=>'required',
-            'deadline'=>'required',
-            'experience'=>'required',
-            'vacancy'=>'required',
             'description'=>'required',
         ]);
 
-        $job =new Job();
+        $application = new Application();
+        $application->user_id = Auth::user()->id;
+        $application->designation =$request->designation;
+        $application->department= $request->department;
+        $application->name = Auth::user()->name;
+        $application->email=Auth::user()->email;
+        $application->experience=$request->experience;
+        $application->description=$request->description;
+        $application->save();
 
-        $job->department_id =implode(',',$request->departments);
-        $job->experience =$request->experience;
-        $job->vacancy =$request->vacancy;
-        $job->designation =$request->designation;
-        $job->circular =$request->circular;
-        $job->deadline =$request->deadline;
-        $job->description =$request->description;
-        $job->save();
-        Toastr::success('Job Requisition created successfully', 'success');
-        return redirect()->route('admin.dashboard');
+        Toastr::success('Application submitted successfully!','success');
+        return redirect()->route('applicant.dashboard');
     }
 
     /**
@@ -74,7 +66,8 @@ class JobController extends Controller
      */
     public function show($id)
     {
-        //
+        $job = Job::findOrFail($id);
+        return view('applicant.application',compact('job'));
     }
 
     /**

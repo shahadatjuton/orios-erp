@@ -19,8 +19,7 @@ class LeaveController extends Controller
      */
     public function index()
     {
-        $leaves = Leave::where('emp_name','Admin')->latest()->get();
-        return view('admin.leave.index',compact('leaves'));
+     //
     }
 
     /**

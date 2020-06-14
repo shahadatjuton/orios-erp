@@ -1,6 +1,6 @@
 @extends('layouts.backend.master')
 
-@section('title', 'Leave-Application')
+@section('title', 'CV-Bank')
 
 @push('css')
 
@@ -10,7 +10,14 @@
 
 @section('content')
 
+
     <div class="container-fluid">
+        <div class="block-header">
+            <h2>
+                CV Bank
+            </h2>
+        </div>
+
         <!-- Exportable Table -->
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -27,9 +34,10 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
+                                    <th>Designation</th>
+                                    <th>Department</th>
                                     <th>Name</th>
-                                    <th>Start Date</th>
-                                    <th>End Date</th>
+                                    <th>Email</th>
                                     <th>Status</th>
                                     <th class="text-center">Action</th>
                                 </tr>
@@ -37,20 +45,21 @@
                                 @foreach($applications as $key=> $application)
                                     <tr>
                                         <td>{{ $key +1 }}</td>
-                                        <td>{{$application->emp_name}}</td>
-                                        <td>{{$application->str_date}}</td>
-                                        <td>{{$application->end_date}}</td>
+                                        <td>{{$application->designation}}</td>
+                                        <td>{{$application->department}}</td>
+                                        <td>{{$application->name}}</td>
+                                        <td>{{$application->email}}</td>
                                         <td>
                                             @if($application->status == 1)
                                                 Accepted
                                             @elseif($application->status == 2)
-                                                Rejected
-                                            @else
-                                                Pending
-                                            @endif
+                                            Rejected
+                                                @else
+                                            Pending
+                                                @endif
                                         </td>
                                         <td>
-                                            <a class="btn btn-info waves-effect" href="{{route('admin.leave.show', $application->id)}}">
+                                            <a class="btn btn-info waves-effect" href="{{route('superadmin.application.show', $application->id)}}">
                                                 <i class="material-icons">visibility </i>
                                             </a>
 
@@ -58,7 +67,7 @@
                                                 <i class="material-icons">done </i>
                                             </button>
 
-                                            <form  id="approve-application-{{$application->id}}" action="{{route('admin.application.update', $application->id)}}"
+                                            <form  id="approve-application-{{$application->id}}" action="{{route('superadmin.application.update', $application->id)}}"
                                                    method="post" style="display:none;"
                                             >
                                                 @csrf
@@ -70,7 +79,7 @@
                                                 <i class="material-icons">reject </i>
                                             </button>
 
-                                            <form  id="reject-application-{{$application->id}}" action="{{route('admin.application.reject', $application->id)}}"
+                                            <form  id="reject-application-{{$application->id}}" action="{{route('superadmin.application.reject', $application->id)}}"
                                                    method="post" style="display:none;"
                                             >
                                                 @csrf
@@ -99,7 +108,6 @@
 
 
 <script type="text/javascript">
-
 
     function rejectApplication(id) {
 
@@ -170,6 +178,8 @@
                 )
             }
         })
+
     }
+
 </script>
 @endpush

@@ -11,6 +11,12 @@
 
         <!-- Styles -->
         <style>
+
+            ul li{
+                list-style: none;
+            }
+
+
             html, body {
                 background-color: #fff;
                 color: #636b6f;
@@ -91,6 +97,37 @@
             <div class="content">
                 <div class="title m-b-md">
                     Laravel
+                </div>
+
+                <div class="row clearfix">
+                    <h1>To apply for job you need to register first.</h1>
+                    <div class="col-lg-8 col-md-6 col-sm-12 col-xs-12">
+                        <div class="card">
+                            <div class="body">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <ul class="list">
+                                            <h4>**New Job Circular** </h4>
+
+                                        @forelse($circulars as $circular)
+                                            <li>
+                                                <span>Post <b>{{$circular->designation}}</b>
+                                                    Vacancy = <b>{{$circular->vacancy}}</b>
+                                                    Deadline <b>{{$circular->deadline->toDateString()}}</b>
+                                                    @guest
+                                                    To apply <a href="{{route('register')}}" class="btn btn-primary">Click Here</a>
+                                                    @else
+                                                    To apply <a href="{{route('applicant.apply')}}" class="btn btn-primary">Click Here</a></span>
+                                                    @endguest
+                                            </li>
+                                            @empty
+                                            @endforelse
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="links">

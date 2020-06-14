@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\SuperAdmin;
 
-use App\Department;
 use App\Http\Controllers\Controller;
 use App\Job;
 use Brian2694\Toastr\Facades\Toastr;
@@ -17,8 +16,8 @@ class JobController extends Controller
      */
     public function index()
     {
-        $jobs = Job::all();
-        return view('admin.staffing.cv',compact('jobs'));
+        $circulars = Job::all();
+        return view('superadmin.jobCircular',compact('circulars'));
     }
 
     /**
@@ -28,8 +27,7 @@ class JobController extends Controller
      */
     public function create()
     {
-        $data = Department::all();
-        return view('admin.staffing.job',compact('data'));
+        //
     }
 
     /**
@@ -40,30 +38,7 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
-
-
-        $this->validate($request,[
-            'designation'=>'required',
-            'departments'=>'required',
-            'circular'=>'required',
-            'deadline'=>'required',
-            'experience'=>'required',
-            'vacancy'=>'required',
-            'description'=>'required',
-        ]);
-
-        $job =new Job();
-
-        $job->department_id =implode(',',$request->departments);
-        $job->experience =$request->experience;
-        $job->vacancy =$request->vacancy;
-        $job->designation =$request->designation;
-        $job->circular =$request->circular;
-        $job->deadline =$request->deadline;
-        $job->description =$request->description;
-        $job->save();
-        Toastr::success('Job Requisition created successfully', 'success');
-        return redirect()->route('admin.dashboard');
+        //
     }
 
     /**
@@ -74,7 +49,8 @@ class JobController extends Controller
      */
     public function show($id)
     {
-        //
+        $job = Job::findOrFail($id);
+        return view('superadmin.jobCircularShow',compact('job'));
     }
 
     /**
@@ -97,7 +73,19 @@ class JobController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $pendingJob=Job::find($id);
+
+        if($pendingJob->status == false)
+        {
+            $pendingJob->status=true;
+            $pendingJob->save();
+            toastr::success('The job is approved successfully','success');
+        }else{
+            Toastr::Info('The job is already approved','info');
+
+        }
+        return redirect()->back();
+
     }
 
     /**
@@ -108,6 +96,7 @@ class JobController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return "okay";
+
     }
 }

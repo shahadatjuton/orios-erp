@@ -1,6 +1,6 @@
 @extends('layouts.backend.master')
 
-@section('title', 'Department')
+@section('title', 'CV-Bank')
 
 @push('css')
 
@@ -16,7 +16,7 @@
             <h2>
                 Department Table
             </h2>
-            <a class="btn btn-primary waves-effect" href="{{route('admin.department.create')}}">
+            <a class="btn btn-primary waves-effect" href="{{route('admin.job.create')}}">
 {{--                <i class="material-icons">add</i>--}}
                 <span>Create Department</span>
             </a>
@@ -29,7 +29,7 @@
                     <div class="header">
                         <h2>
                             Total Department
-                            <span class="badge bg-blue"ma>{{ $data->count() }}</span>
+                            <span class="badge bg-blue">{{ $jobs->count() }}</span>
                         </h2>
                     </div>
                     <div class="body">
@@ -38,25 +38,33 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Leave Type</th>
-                                    <th>Created At </th>
+                                    <th>Designation</th>
+                                    <th>Department</th>
+                                    <th>Experience</th>
+                                    <th>No of Vacancy</th>
+                                    <th>Circulation Date</th>
+                                    <th>Deadline</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
-                                @foreach($data as $key=> $data)
+                                @foreach($jobs as $key=> $job)
                                     <tr>
                                         <td>{{ $key +1 }}</td>
-                                        <td>{{$data->name}}</td>
-                                        <td>{{$data->created_at}}</td>
+                                        <td>{{$job->designation}}</td>
+                                        <td>{{$job->department}}</td>
+                                        <td>{{$job->experience}}</td>
+                                        <td>{{$job->vacancy}}</td>
+                                        <td>{{$job->circular}}</td>
+                                        <td>{{$job->deadline}}</td>
                                         <td>
-                                            <a class="btn btn-info waves-effect" href="{{route('admin.department.edit',$data->id)}}">
+                                            <a class="btn btn-info waves-effect" href="{{route('admin.department.edit',$job->id)}}">
                                                 <i class="material-icons">edit </i>
                                             </a>
-                                            <button type="button" name="button"  class="btn btn-danger waves-effect" onclick="deletedepartment({{$data->id}})">
+                                            <button type="button" name="button"  class="btn btn-danger waves-effect" onclick="deletedepartment({{$job->id}})">
                                                 <i class="material-icons" >delete</i>
 
                                             </button>
-                                            <form  id="delete-department-{{$data->id}}" action="{{route('admin.department.destroy', $data->id)}}"
+                                            <form  id="delete-department-{{$job->id}}" action="{{route('admin.department.destroy', $job->id)}}"
                                                    method="post" style="display:none;"
                                             >
                                                 @csrf

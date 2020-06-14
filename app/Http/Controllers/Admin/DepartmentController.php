@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Department;
 use App\Http\Controllers\Controller;
-use App\LeaveType;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
@@ -46,7 +45,7 @@ class DepartmentController extends Controller
         $data = new Department();
         $data->name = $request->name;
         $data->save();
-        Toastr::success('Department created successfully!','success');
+        Toastr()->info('Department created successfully!', 'success');
         return redirect()->route('admin.department.index');
     }
 
@@ -85,8 +84,8 @@ class DepartmentController extends Controller
         $data= Department::find($id);
         $data->name = $request->name;
         $data->save();
-
-        Toastr::success('Department updated successfully', 'success');
+        Toastr::success('Department created successfully!', 'success');
+//        Toastr()->info('Department created successfully!', 'success');
         return redirect()->route('admin.department.index');
     }
 
@@ -98,6 +97,10 @@ class DepartmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $department = Department::find($id);
+        $department->delete();
+        toastr::success('Data is deleted successfully!!','success');
+        return redirect()->back();
     }
 }

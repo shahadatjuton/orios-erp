@@ -3,6 +3,56 @@
         <a href="#" class="img logo rounded-circle mb-5" style="background-image: url({{asset('assets/backend/images/'.Auth::user()->image)}});"></a>
         <h4 class="text-center" style="color: white;">{{Auth::user()->name}}</h4>
         <ul class="list-unstyled components mb-5">
+
+            <!-- ===================Start Super-Admin Side bar ============================  -->
+
+            @if(Request::is('superadmin*'))
+
+                <li class="{{ Request::is('superadmin/dashboard') ? 'active' : '' }}">
+                    <a href="{{route('superadmin.dashboard')}}">
+                        <i class="material-icons">dashboard</i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="staffing">
+                    <a href="#staffingSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Job</a>
+                    <ul class="collapse list-unstyled" id="staffingSubmenu">
+                        <li>
+                            <a href="{{route('superadmin.jobCircular')}}">Job Applications</a>
+                        </li>
+                        <li>
+                            <a href="{{route('superadmin.application.index')}}">CV Bank</a>
+                        </li>
+                        <li>
+                            <a href="">Assessment</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="staffing">
+                    <a href="#leaveSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Leave</a>
+                    <ul class="collapse list-unstyled" id="leaveSubmenu">
+                        <li>
+                            <a href="{{route('superadmin.leaveApplication.index')}}">Leave Applications</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                        <i class="material-icons">input</i>
+                        <span>logout</span>
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </li>
+
+            @endif
+
+        <!-- ================End Super-Admin Side bar ============================  -->
+
             <!-- ===================Start author Side bar ============================  -->
 
             @if(Request::is('admin*'))
@@ -20,7 +70,7 @@
                             <a href="{{route('admin.job.create')}}">Job Requisition</a>
                         </li>
                         <li>
-                            <a href="">CV Bank</a>
+                            <a href="{{route('admin.job.index')}}">CV Bank</a>
                         </li>
                         <li>
                             <a href="">Assessment</a>
@@ -32,7 +82,7 @@
                     <a href="#leaveSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Leave</a>
                     <ul class="collapse list-unstyled" id="leaveSubmenu">
                         <li>
-                            <a href="{{route('admin.leave.list')}}">Application List</a>
+                            <a href="{{route('admin.application.index')}}">Application List</a>
                         </li>
                         <li>
                             <a href="{{route('admin.leave.index')}}">Own Application</a>
@@ -129,7 +179,7 @@
         @endif
 
         <!-- ================End User Side bar ============================  -->
-            <!-- ===================Start User Side bar ============================  -->
+            <!-- ===================Start Applicant Side bar ============================  -->
 
             @if(Request::is('applicant*'))
 
@@ -154,32 +204,8 @@
 
         @endif
 
-        <!-- ================End User Side bar ============================  -->
-            <li class="">
-                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-                <ul class="collapse list-unstyled" id="homeSubmenu">
-                    <li>
-                        <a href="#">Home 1</a>
-                    </li>
-                    <li>
-                        <a href="#">Home 2</a>
-                    </li>
-                    <li>
-                        <a href="#">Home 3</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="#">About</a>
-            </li>
+        <!-- ================End Applicant Side bar ============================  -->
 
-
-            <li>
-                <a href="#">Portfolio</a>
-            </li>
-            <li>
-                <a href="#">Contact</a>
-            </li>
         </ul>
 
         <div class="footer">

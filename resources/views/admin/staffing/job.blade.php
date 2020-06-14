@@ -18,23 +18,23 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            Create a job vacancy
+                            Create a job requisition
                         </h2>
                     </div>
                     <div class="body">
                         <form action="{{route('admin.job.store')}}" method="post" enctype="multipart/form-data">
                             @csrf
 
-                                <div class="form-group form-float">
-                                    <label for="">Designation</label>
-                                    <div class="form-line">
-                                        <input type="text"  class="form-control" name="designation" placeholder="{{old('designation')}}">
-                                    </div>
+                            <div class="form-group form-float">
+                                <label for="">Designation</label>
+                                <div class="form-line">
+                                    <input type="text"  class="form-control" name="designation" placeholder="{{old('designation')}}">
                                 </div>
+                            </div>
                             <div class="form-group form-float">
                                 <label for="">Select Department</label>
                                 <div class="form-line {{ $errors->has('data') ? 'focused error' : '' }}">
-                                    <select name="departments[]" class="form-control show-tick" data-live-searche="true" multiple>
+                                    <select name="departments[]" class="form-control show-tick" data-live-searche="true" >
                                         @foreach($data as $data)
                                             <option value="{{$data->id}}">{{ $data->name }}</option>
                                         @endforeach
@@ -53,25 +53,25 @@
                                     <input type="number"  class="form-control" name="vacancy" placeholder="{{old('vacancy')}}">
                                 </div>
                             </div>
-                                <div class="form-group form-float">
-                                    <label for="">Circulation Date</label>
-                                    <div class="form-line">
-                                        <input type="date"  class="form-control" name="circular" placeholder="{{old('circular')}}">
-                                    </div>
+                            <div class="form-group form-float">
+                                <label for="">Circulation Date</label>
+                                <div class="form-line">
+                                    <input type="date"  class="form-control" name="circular" placeholder="{{old('circular')}}">
                                 </div>
-                                <div class="form-group form-float">
-                                    <label for="">Deadline</label>
-                                    <div class="form-line">
-                                        <input type="date"  class="form-control" name="deadline" placeholder="{{old('deadline')}}">
-                                    </div>
+                            </div>
+                            <div class="form-group form-float">
+                                <label for="">Deadline</label>
+                                <div class="form-line">
+                                    <input type="date"  class="form-control" name="deadline" placeholder="{{old('deadline')}}">
                                 </div>
-                                <div class="form-group form-float">
-                                    <label for="">Job Description / Responsibilities</label>
-                                    <div class="body">
-                                        <textarea id="tinymce" name="description" rows="6" cols="95"></textarea>
-                                    </div>
+                            </div>
+                            <div class="form-group form-float">
+                                <label for="">Job Description / Responsibilities</label>
+                                <div class="body">
+                                    <textarea id="tinymce" name="description" rows="6" cols="47"></textarea>
                                 </div>
-                                <button type="submit" class="btn btn-success m-t-15 waves-effect">Submit</button>
+                            </div>
+                            <button type="submit" class="btn btn-success m-t-15 waves-effect">Submit</button>
                         </form>
                     </div>
                 </div>

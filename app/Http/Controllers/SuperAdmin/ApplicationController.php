@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\SuperAdmin;
 
-use App\Department;
+use App\Application;
 use App\Http\Controllers\Controller;
-use App\Job;
-use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
-class JobController extends Controller
+class ApplicationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +15,8 @@ class JobController extends Controller
      */
     public function index()
     {
-        $jobs = Job::all();
-        return view('admin.staffing.cv',compact('jobs'));
+        $applications = Application::all();
+        return view('superadmin.cvBank',compact('applications'));
     }
 
     /**
@@ -28,8 +26,7 @@ class JobController extends Controller
      */
     public function create()
     {
-        $data = Department::all();
-        return view('admin.staffing.job',compact('data'));
+        //
     }
 
     /**
@@ -40,30 +37,7 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
-
-
-        $this->validate($request,[
-            'designation'=>'required',
-            'departments'=>'required',
-            'circular'=>'required',
-            'deadline'=>'required',
-            'experience'=>'required',
-            'vacancy'=>'required',
-            'description'=>'required',
-        ]);
-
-        $job =new Job();
-
-        $job->department_id =implode(',',$request->departments);
-        $job->experience =$request->experience;
-        $job->vacancy =$request->vacancy;
-        $job->designation =$request->designation;
-        $job->circular =$request->circular;
-        $job->deadline =$request->deadline;
-        $job->description =$request->description;
-        $job->save();
-        Toastr::success('Job Requisition created successfully', 'success');
-        return redirect()->route('admin.dashboard');
+        //
     }
 
     /**
@@ -74,7 +48,8 @@ class JobController extends Controller
      */
     public function show($id)
     {
-        //
+        $application = Application::findOrFail($id);
+        return view('superadmin.applicationShow',compact('application'));
     }
 
     /**
@@ -97,7 +72,14 @@ class JobController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $status = $request->status;
+        $application = Application::find($id);
+
+        if($status == true) {
+            $application->status = 1;
+            $application->save();
+            return redirect()->back();
+        }
     }
 
     /**
@@ -108,6 +90,15 @@ class JobController extends Controller
      */
     public function destroy($id)
     {
-        //
+
     }
+
+    public function reject(Request $request, $id)
+    {
+        $application = Application::find($id);
+        $application->status = 2;
+        $application->save();
+        return redirect()->back();
+    }
+
 }

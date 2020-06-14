@@ -50,4 +50,8 @@ class User extends Authenticatable
         public function presents(){
             return $this->hasMany('App\Present');
         }
+
+    public function job(){
+        return $this->belongsTo('App\Job');
+    }
 }
