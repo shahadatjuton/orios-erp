@@ -39,6 +39,16 @@ Route::group(['as'=>'superadmin.','prefix'=>'superadmin','namespace'=>'SuperAdmi
     Route::resource('application','ApplicationController');
     Route::put('application/reject/{id}','ApplicationController@reject')->name('application.reject');
 
+    Route::get('assessment/employees/','AssessmentController@employees')->name('assessment.employees');
+    Route::get('assessment/interviwer/{id}','AssessmentController@interviwer')->name('assessment.interviwer');
+    Route::post('assessment/invitation/','AssessmentController@invitation')->name('assessment.invitation');
+
+    Route::get('assessment/applications/','AssessmentController@applications')->name('assessment.applications');
+    Route::get('assessment/application/{id}','AssessmentController@applicant')->name('assessment.applicant');
+    Route::post('assessment/applicant/invitation/','AssessmentController@applicantInvitation')->name('assessment.applicantInvitation');
+    Route::get('assessment/result/','AssessmentController@result')->name('assessment.result');
+//    Route::resource('assessment','AssessmentController');
+
 
 
 });
@@ -66,7 +76,7 @@ Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware'
     Route::resource('application','LeaveApplicationController');
     Route::put('application/reject/{id}','LeaveApplicationController@reject')->name('application.reject');
 
-
+    Route::resource('attendance','AttendanceController');
 
 ////================*****Leave Type*****========================
 //    Route::get('leave/type/list', 'LeaveTypeController@index')->name('leaveType.index');
@@ -85,6 +95,7 @@ Route::group(['as'=>'user.','prefix'=>'user','namespace'=>'User','middleware'=>[
     Route::resource('leave','LeaveController');
 
     Route::get('present/','DashboardController@present')->name('present');
+    Route::resource('assessment','AssessmentController');
 
 
 

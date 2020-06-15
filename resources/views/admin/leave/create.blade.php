@@ -12,8 +12,6 @@
 
 <div>
 
-
-
     <!-- Vertical Layout | With Floating Label -->
     <div class="row clearfix">
         <div class="col-lg-2 col-md-2">
@@ -31,7 +29,7 @@
                         <div class="form-group form-float">
                             <label for="">Select Leave Type</label>
                             <div class="form-line {{ $errors->has('data') ? 'focused error' : '' }}">
-                                <select name="leave_type[]" class="form-control show-tick" data-live-searche="true" multiple>
+                                <select name="leave_type[]" class="form-control show-tick" data-live-searche="true" >
                                     @foreach($data as $data)
                                         <option value="{{$data->id}}">{{ $data->leave_type }}</option>
                                     @endforeach

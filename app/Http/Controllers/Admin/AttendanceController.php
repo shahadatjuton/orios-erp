@@ -1,17 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Leave;
-use App\LeaveType;
-use Brian2694\Toastr\Facades\Toastr;
-use Carbon\Carbon;
+use App\Present;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use DateTime;
 
-class LeaveController extends Controller
+class AttendanceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,8 +15,8 @@ class LeaveController extends Controller
      */
     public function index()
     {
-        $leaves = Leave::where('emp_name','User')->latest()->get();
-        return view('user.leave.index',compact('leaves'));
+        $attendance = Present::all();
+        return view('admin.staffing.attendance');
     }
 
     /**
@@ -31,8 +26,7 @@ class LeaveController extends Controller
      */
     public function create()
     {
-        $data = LeaveType::all();
-        return view('user.leave.create',compact('data'));
+        //
     }
 
     /**
@@ -43,34 +37,7 @@ class LeaveController extends Controller
      */
     public function store(Request $request)
     {
-
-        $this->validate($request,[
-            'leave_type'=>'required',
-            'str_date'=>'required',
-            'end_date'=>'required',
-            'reason'=>'required',
-        ]);
-
-//        $date1=$request->str_date;
-//        $date2=$request->end_date;
-//        $date1 = new \DateTime($date1);
-//        $date2 = new \DateTime($date2);
-//        $interval = $date1->fiff($date2);
-//       return $days= $interval->format('%a');
-
-        $user_id =Auth::user()->id;
-        $leave =new Leave();
-        $leave->leave_type_id =implode(',',$request->leave_type);
-        $leave->emp_name= Auth::user()->name;
-        $leave->str_date= $request->str_date;
-        $leave->end_date=$request->end_date;
-        $leave->reason=$request->reason;
-        if ($user_id = 3){
-            $leave->for="admin";
-        }
-        $leave->save();
-        Toastr::success('Application submitted successfully', 'success');
-        return redirect()->route('user.leave.index');
+        //
     }
 
     /**

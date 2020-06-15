@@ -29,6 +29,20 @@
                     </ul>
                 </li>
                 <li class="staffing">
+                    <a href="#assessmentSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Assessment</a>
+                    <ul class="collapse list-unstyled" id="assessmentSubmenu">
+                        <li>
+                            <a href="{{route('superadmin.assessment.employees')}}">Invite for Assessment</a>
+                        </li>
+                        <li>
+                            <a href="{{route('superadmin.assessment.applications')}}">Invite for Interview</a>
+                        </li>
+                        <li>
+                            <a href="{{route('superadmin.assessment.result')}}">Assessment Result</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="staffing">
                     <a href="#leaveSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Leave</a>
                     <ul class="collapse list-unstyled" id="leaveSubmenu">
                         <li>
@@ -53,7 +67,7 @@
 
         <!-- ================End Super-Admin Side bar ============================  -->
 
-            <!-- ===================Start author Side bar ============================  -->
+            <!-- ===================Start Admin Side bar ============================  -->
 
             @if(Request::is('admin*'))
 
@@ -97,6 +111,9 @@
                     <ul class="collapse list-unstyled" id="attendanceSubmenu">
                         <li>
                             <a href="">Attendance</a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.attendance.index')}}">Own Attendance</a>
                         </li>
                     </ul>
                 </li>
@@ -163,6 +180,15 @@
                         </li>
                     </ul>
                 </li>
+                <li class="">
+                    <a href="#assessSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Assessment</a>
+                    <ul class="collapse list-unstyled" id="assessSubmenu">
+                        <li>
+                            <a href="{{route('user.assessment.index')}}">Invited Applicants</a>
+                        </li>
+
+                    </ul>
+                </li>
                 <li>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
@@ -208,9 +234,9 @@
 
         </ul>
 
-        <div class="footer">
+        <div class="footer" style="margin-top:auto;">
             <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
+                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved |
                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
         </div>
 

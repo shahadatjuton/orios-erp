@@ -8,10 +8,68 @@
 
 
 @section('content')
-    <h2 class="mb-4">Sidebar #01</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
+    <div class="container-fluid">
+        <br><br>
+        <div class="row clearfix">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="body">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <ul class="list">
+                                    <li>
+                                        Name:
+                                    </li>
+                                    <li>
+                                        E-mail:
+                                    </li>
+                                    <li>
+                                        Joining Date:
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <ul>
+                                    <li>
+                                        {{Auth::user()->name}}
+                                    </li>
+                                    <li>
+                                        {{Auth::user()->email}}
+                                    </li>
+                                    <li>
+                                        {{Auth::user()->created_at->diffForhumans()}}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            {{--            Right Card --}}
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header text-center" >
+                        Hello!! <b>{{Auth::user()->name}}</b>
+                    </div>
+                    <div class="body" style="margin: 10px;">
+                        <p>Give Your Attendance here!  <a class="btn btn-success" href="{{route('admin.present')}}">Present</a></p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <!-- Vertical Layout | With Floating Label -->
+
+    </div>
+    
 @endsection
 
 

@@ -18,6 +18,8 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->unsignedBigInteger('role_id')->default(4);
+            $table->string('designation')->nullable();
+            $table->string('department')->nullable();
             $table->string('image')->default('default.png');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
