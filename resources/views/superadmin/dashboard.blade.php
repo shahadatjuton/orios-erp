@@ -3,7 +3,11 @@
 @section('title','Dashboard')
 
 @push ('css')
-
+    <style>
+        ul li{
+            list-style: none;
+        }
+    </style>
 @endpush
 
 
@@ -55,8 +59,17 @@
                         Hello!! <b>{{Auth::user()->name}}</b>
                     </div>
                     <div class="body" style="margin: 10px;">
-                        <p>Give Your Attendance here!  <a class="btn btn-success" href="{{route('admin.present')}}">Present</a></p>
-
+                        @if($current_time == $present->created_at->toDateString())
+                            @if($present->attendance == 1)
+                                <p class="text-center">You are <span class="attendance">Present</span> today!</p>
+                            @else($present->attendance == 0)
+                                <p class="text-center">You are <span class="attendance">Absent</span> today!</p>
+                            @endif
+                        @else
+                            <p> Give Your Attendance here!
+                                <a class="btn btn-success" href="{{route('superadmin.present')}}">Present</a>
+                            </p>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -69,7 +82,7 @@
         <!-- Vertical Layout | With Floating Label -->
 
     </div>
-    
+
 @endsection
 
 

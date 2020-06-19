@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Leave;
 use App\LeaveType;
+use App\Present;
 use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -116,5 +117,14 @@ class LeaveController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function attendanceReport(){
+         $user = Auth::user();
+//        $last_week_attendance = Present::whereDate('created_at',Carbon::now()->subWeek())->count();
+        $total_attendance = Auth::user()->presents()
+          ->where('attendance','1')->count();
+
+      return view('user.leave.attendanceSheet',compact('total_attendance','user'));
+
     }
 }

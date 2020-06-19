@@ -45,7 +45,7 @@ class DepartmentController extends Controller
         $data = new Department();
         $data->name = $request->name;
         $data->save();
-        Toastr()->info('Department created successfully!', 'success');
+        Toastr::success('Department created successfully!', 'success');
         return redirect()->route('admin.department.index');
     }
 

@@ -14,8 +14,9 @@ use Illuminate\Support\Facades\Auth;
 class DashboardController extends Controller
 {
     public function index(){
-
-        return view('admin.dashboard');
+        $current_time = \Carbon\Carbon::now()->toDateString();
+        $present = Auth::user()->presents()->latest()->first();
+        return view('admin.dashboard',compact('current_time','present'));
     }
 
     /**

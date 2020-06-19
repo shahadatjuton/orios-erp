@@ -1,6 +1,6 @@
 <nav id="sidebar">
     <div class="p-4 pt-5">
-        <a href="#" class="img logo rounded-circle mb-5" style="background-image: url({{asset('assets/backend/images/'.Auth::user()->image)}});"></a>
+        <div class="img logo rounded-circle mb-5" style="background-image: url({{asset('assets/backend/images/'.Auth::user()->image)}});"></div>
         <h4 class="text-center" style="color: white;">{{Auth::user()->name}}</h4>
         <ul class="list-unstyled components mb-5">
 
@@ -47,6 +47,12 @@
                     <ul class="collapse list-unstyled" id="leaveSubmenu">
                         <li>
                             <a href="{{route('superadmin.leaveApplication.index')}}">Leave Applications</a>
+                        </li>
+                        <li>
+                            <a href="{{route('superadmin.attendance.report')}}">Own Attendance Report</a>
+                        </li>
+                        <li>
+                            <a href="{{route('superadmin.attendance.sheet')}}">Employees Attendance Sheet</a>
                         </li>
                     </ul>
                 </li>
@@ -113,7 +119,7 @@
                             <a href="">Attendance</a>
                         </li>
                         <li>
-                            <a href="{{route('admin.attendance.index')}}">Own Attendance</a>
+                            <a href="{{route('admin.attendance.report')}}">Own Attendance Report</a>
                         </li>
                     </ul>
                 </li>
@@ -177,6 +183,9 @@
                         </li>
                         <li>
                             <a href="{{route('user.leave.create')}}">Leave Application </a>
+                        </li>
+                        <li>
+                            <a href="{{route('user.attendance.report')}}">Own Attendance Report </a>
                         </li>
                     </ul>
                 </li>

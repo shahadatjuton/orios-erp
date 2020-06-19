@@ -10,16 +10,7 @@
 
 @section('content')
 
-    <div class="row clearfix">
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <!-- Top Search Area -->
-            <div class="top-search-area">
-                <form action="{{route('search.applicant')}}" method="GET">
-                    <input type="search" name="keyword" value="{{ old('keyword') }}" placeholder="Search Applicant">
-                    <button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
-                </form>
-            </div>
-        </div>
+
     <!-- Exportable Table -->
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -27,7 +18,7 @@
                 <div class="header">
                     <h2>
                         Selected Applicants
-                        <span class="badge bg-blue">{{ $applicants->count() }}</span>
+                        <span class="badge bg-blue">{{ $applicant->count() }}</span>
                     </h2>
                 </div>
                 <div class="body">
@@ -44,18 +35,13 @@
                             </tr>
                             </thead>
 
-                            @foreach($applicants as $key=> $applicant)
-                                @php
-                                    $user = \App\User::find($applicant->user_id);
-                                    $department = \App\Department::find($applicant->department);
-                                @endphp
-
+                            @foreach($applicant as $key=> $applicant)
                                 <tr>
                                     <td>{{ $key +1 }}</td>
                                     <td>{{$applicant->designation}}</td>
-                                    <td>{{$department->name}}</td>
-                                    <td>{{$user->name}}</td>
-                                    <td>{{$user->email}}</td>
+                                    <td>{{$applicant->department}}</td>
+                                    <td>{{$applicant->name}}</td>
+                                    <td>{{$applicant->email}}</td>
                                     <td>
                                         <a class="btn btn-info waves-effect" href="{{route('user.assessment.show', $applicant->id)}}">
                                             <i class="material-icons">Go To Assess </i>

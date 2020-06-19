@@ -60,8 +60,17 @@
                             Hello!! <b>{{Auth::user()->name}}</b>
                     </div>
                     <div class="body" style="margin: 10px;">
-                        <p>Give Your Attendance here!  <a class="btn btn-success" href="{{route('admin.present')}}">Present</a></p>
-
+                        @if($current_time == $present->created_at->toDateString())
+                            @if($present->attendance == 1)
+                                <p>You are <span class="attendance">Present</span> today!</p>
+                            @else($present->attendance == 0)
+                                <p>You are <span class="attendance">Absent</span> today!</p>
+                            @endif
+                        @else
+                            <p> Give Your Attendance here!
+                                <a class="btn btn-success" href="{{route('admin.present')}}">Present</a>
+                            </p>
+                        @endif
                     </div>
                 </div>
             </div>

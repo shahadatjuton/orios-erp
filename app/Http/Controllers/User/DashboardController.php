@@ -4,17 +4,21 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Present;
+use App\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class DashboardController extends Controller
 {
     public function index(){
-
-        $present = Present::where('user_id',3)->get();
-        return view('user.dashboard',compact('present'));
+       $user = User::latest()->get();
+       $current_time = Carbon::now()->toDateString();
+       $present = Auth::user()->presents()->latest()->first();
+//        $present = Present::where('user_id',3)->get();
+        return view('user.dashboard',compact('present','current_time','user'));
     }
 
     /**
