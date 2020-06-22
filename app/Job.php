@@ -12,9 +12,16 @@ class Job extends Model
         // your other new column
     ];
 
+//    protected $fillable = [
+//        'designation_id',
+//    ];
 
     public function department(){
         return $this->belongsTo('App\Department');
+    }
+
+    public function designation(){
+        return $this->belongsTo('App\Designation');
     }
 
     public function users(){

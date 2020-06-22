@@ -21,30 +21,42 @@
     <div class="container-fluid">
 
         <!-- Vertical Layout | With Floating Label -->
-        <a href="{{ route('admin.application.index')}}" class="btn btn-info waves-effect">BACK</a>
+        <a href="{{ route('admin.application.index')}}" class="btn btn-info waves-effect"><i class="fas fa-arrow-left"></i></a>
 
-        @if($leave->status=="")
+        @if($leave->status==0)
 
-{{--            <button type="button" name="button" class="btn btn-success waves-effect pull-right" onclick="approvePost({{ $leave->id }})">--}}
-{{--                <i class="material-icons">done </i>--}}
-{{--                <span>Approve</span>--}}
-{{--            </button>--}}
+            <button type="button" name="button" class="btn btn-success waves-effect pull-right" onclick="approveApplication({{ $leave->id }})">
+                <i class="far fa-check-circle"></i>
+            </button>
 
-{{--            <form  id="approve-post-{{$leave->id}}" action="{{route('admin.leave.approve', $leave->id)}}"--}}
-{{--                   method="post" style="display:none;"--}}
-{{--            >--}}
-{{--                @csrf--}}
-{{--                @method('PUT')--}}
+            <form  id="approve-application-{{$leave->id}}" action="{{route('admin.application.update', $leave->id)}}"
+                   method="post" style="display:none;"
+            >
+                @csrf
+                @method('PUT')
 
-{{--            </form>--}}
+            </form>
 
-        @elseif($leave->status==true)
+{{--            ================Reject Application====================--}}
+            <button type="button" name="button" class="btn btn-danger waves-effect" onclick="rejectApplication({{ $leave->id }})">
+                <i class="fas fa-trash-alt"></i>
+            </button>
+
+            <form  id="reject-application-{{$leave->id}}" action="{{route('admin.application.reject', $leave->id)}}"
+                   method="post" style="display:none;"
+            >
+                @csrf
+                @method('PUT')
+                <input type="hidden" value="false" name="status">
+
+            </form>
+
+        @elseif($leave->status==1)
 
             <button type="button" name="button" class="bt btn-success pull-right" disabled>
-                <i class="material-icons">done </i>
                 <span>Approved</span>
             </button>
-        @elseif($leave->status==false)
+        @elseif($leave->status==2)
 
             <button type="button" name="button" class="bt btn-success pull-right" disabled>
                 <i class="material-icons">cancel</i>
@@ -115,7 +127,7 @@
 
 <script type="text/javascript">
 
-    function deleteleavetype(id) {
+    function rejectApplication(id) {
 
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
@@ -127,16 +139,16 @@
 
         swalWithBootstrapButtons.fire({
             title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            text: "You want to Reject the application!",
             type: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Yes, delete it!',
+            confirmButtonText: 'Yes, Reject!',
             cancelButtonText: 'No, cancel!',
             reverseButtons: true
         }).then((result) => {
             if (result.value) {
                 event.preventDefault();
-                document.getElementById('delete-leave-type-' + id).submit();
+                document.getElementById('reject-application-' + id).submit();
             } else if (
                 /* Read more about handling dismissals below */
                 result.dismiss === Swal.DismissReason.cancel
@@ -149,6 +161,41 @@
             }
         })
 
+    }
+    //  Approve application
+    function approveApplication(id) {
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You want to Accept the application!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, Accept!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                event.preventDefault();
+                document.getElementById('approve-application-' + id).submit();
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    'Your data is safe :)',
+                    'error'
+                )
+            }
+        })
     }
 
 </script>

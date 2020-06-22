@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Job;
 use App\Present;
 use App\User;
 use Brian2694\Toastr\Facades\Toastr;
@@ -14,11 +15,12 @@ use Illuminate\Support\Str;
 class DashboardController extends Controller
 {
     public function index(){
-       $user = User::latest()->get();
+        $user = User::latest()->first();
+        $vacancy = Job::latest()->where('status',true)->first();
        $current_time = Carbon::now()->toDateString();
        $present = Auth::user()->presents()->latest()->first();
 //        $present = Present::where('user_id',3)->get();
-        return view('user.dashboard',compact('present','current_time','user'));
+        return view('user.dashboard',compact('present','current_time','user','vacancy'));
     }
 
     /**

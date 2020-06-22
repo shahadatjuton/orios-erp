@@ -5,12 +5,20 @@ namespace App\Http\Controllers\SuperAdmin;
 use App\Application;
 use App\assessmentInvitation;
 use App\Department;
+use App\Designation;
 use App\Http\Controllers\Controller;
 use App\interviewInvitation;
+use App\Notifications\SendAppointmentLetter;
 use App\Rating;
 use App\User;
 use Brian2694\Toastr\Facades\Toastr;
+//use Faker\Provider\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+//use Intervention\Image\Facades\Image;
 
 class AssessmentController extends Controller
 {
@@ -177,5 +185,82 @@ class AssessmentController extends Controller
     public function result(){
         $result = Rating::all();
         return view('superadmin.assessment.result',compact('result'));
+    }
+
+    public function appointmentLetter($id){
+        $rating = Rating::findOrFail($id);
+        $application = Application::findOrFail($rating->application_id);
+        $applicant  = User::findOrFail($application->user_id);
+        return view('superadmin.assessment.appointmentLetter',compact('applicant','application'));
+    }
+
+    public function sendAppointmentLetter(Request $request){
+        $application_id = $request->application_id;
+        $user_id = $request->user_id;
+        $application = Application::findOrFail($application_id);
+        $applicant = User::findOrFail($user_id);
+        $date = $request->date;
+
+        $application->user->notify(new SendAppointmentLetter($application,$date));
+        Toastr::success('Appointment Letter has been sent successfully!');
+        return redirect()->route('superadmin.assessment.result');
+    }
+
+    public function createUser(){
+        $department = Department::all();
+        $designation = Designation::all();
+        return view('superadmin.assessment.createUser',compact('designation','department'));
+    }
+
+    public function registerUser(Request $request){
+        $this->validate($request,[
+            'designations'=>'required',
+            'departments'=>'required',
+            'name' => 'required', 'string', 'max:255',
+            'email' => 'required', 'string', 'email', 'max:255', 'unique:users',
+            'password' => 'required', 'string', 'min:8', 'confirmed',
+//            'image'=>'required',
+        ]);
+//
+//        $image = $request->file('image');
+//        $slug = str::slug($request->name);
+//
+//        if (isset($image)) {
+//
+//            $currant_date = Carbon::now()->toDateString();
+//            $image_name = $slug.'-'.$currant_date.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+//
+//            //==========Check and set Image Directory==================
+//
+//            if (!Storage::disk('public')->exists('Profile')) {
+//
+//                Storage::disk('public')->makeDirectory('Profile');
+//
+//            }
+//            //==========Make new image ==================
+//
+//            $imageSize=Image::make($image)->resize(1600,1066)->save($image->getClientOriginalExtension());
+//
+//            Storage::disk('public')->put('Profile/'.$image_name,$imageSize);
+//
+//        }else {
+//
+//            $image_name= "default.png";
+//        }
+
+
+        $user =new User();
+        $designation_id = implode(',',$request->designations);
+        $department_id = implode(',',$request->departments);
+        $user->designation    = $designation_id;
+        $user->department     = $department_id;
+        $user->name= $request->name;
+        $user->email =$request->email;
+        $user->password = Hash::make($request->password);
+        $user->image = "default.png";
+        $user->role_id = 3;
+        $user->save();
+        Toastr::success('New user created successfully', 'success');
+        return redirect()->route('superadmin.dashboard');
     }
 }

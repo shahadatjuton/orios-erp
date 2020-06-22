@@ -51,11 +51,12 @@
                                         </td>
                                         <td>
                                             <a class="btn btn-info waves-effect" href="{{route('admin.leave.show', $application->id)}}">
-                                                <i class="material-icons">visibility </i>
+                                                <i class="far fa-eye"></i>
                                             </a>
 
                                             <button type="button" name="button" class="btn btn-success waves-effect" onclick="approveApplication({{ $application->id }})">
-                                                <i class="material-icons">done </i>
+{{--                                                <i class="material-icons">done </i>--}}
+                                                <i class="far fa-check-circle"></i>
                                             </button>
 
                                             <form  id="approve-application-{{$application->id}}" action="{{route('admin.application.update', $application->id)}}"
@@ -67,7 +68,7 @@
                                             </form>
 
                                             <button type="button" name="button" class="btn btn-danger waves-effect" onclick="rejectApplication({{ $application->id }})">
-                                                <i class="material-icons">reject </i>
+                                                <i class="fas fa-trash-alt"></i>
                                             </button>
 
                                             <form  id="reject-application-{{$application->id}}" action="{{route('admin.application.reject', $application->id)}}"

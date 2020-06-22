@@ -13,15 +13,7 @@
 
     <div class="container-fluid">
         <div class="block-header">
-            <h2>
-                Leave Type Table
 
-            </h2>
-
-            <a class="btn btn-primary waves-effect" href="{{route('admin.leaveType.create')}}">
-{{--                <i class="material-icons">add</i>--}}
-                <span>Create Leave Type</span>
-            </a>
         </div>
 
         <!-- Exportable Table -->
@@ -30,7 +22,7 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            Total Leave Type
+                            Total Leave Application
                             <span class="badge bg-blue">{{ $leaves->count() }}</span>
                         </h2>
                     </div>

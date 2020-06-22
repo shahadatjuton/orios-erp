@@ -1,6 +1,6 @@
 @extends('layouts.backend.master')
 
-@section('title', 'Department')
+@section('title', 'Designation')
 
 @push('css')
 
@@ -13,9 +13,10 @@
 
     <div class="container-fluid">
         <div class="block-header">
-            <a class="btn btn-primary waves-effect" href="{{route('admin.department.create')}}">
-{{--                <i class="material-icons">add</i>--}}
-                <span>Create Department</span>
+
+            <a class="btn btn-primary waves-effect" href="{{route('admin.designation.create')}}">
+                <i class="fas fa-plus-circle"></i>
+                <span>Create Designation</span>
             </a>
         </div>
 
@@ -25,7 +26,7 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            Total Department
+                            Total Designation
                             <span class="badge bg-blue"ma>{{ $data->count() }}</span>
                         </h2>
                     </div>
@@ -40,20 +41,20 @@
                                     <th>Action</th>
                                 </tr>
                                 </thead>
-                                @foreach($data as $key=> $data)
+                                @forelse($data as $key=> $data)
                                     <tr>
                                         <td>{{ $key +1 }}</td>
                                         <td>{{$data->name}}</td>
                                         <td>{{$data->created_at}}</td>
                                         <td>
-                                            <a class="btn btn-info waves-effect" href="{{route('admin.department.edit',$data->id)}}">
-                                                <i class="material-icons">edit </i>
+                                            <a class="btn btn-info waves-effect" href="{{route('admin.designation.edit',$data->id)}}">
+                                                <i class="far fa-edit"></i>
                                             </a>
-                                            <button type="button" name="button"  class="btn btn-danger waves-effect" onclick="deletedepartment({{$data->id}})">
-                                                <i class="material-icons" >delete</i>
+                                            <button type="button" name="button"  class="btn btn-danger waves-effect" onclick="deleteDesignation({{$data->id}})">
+                                                <i class="fas fa-trash-alt"></i>
 
                                             </button>
-                                            <form  id="delete-department-{{$data->id}}" action="{{route('admin.department.destroy', $data->id)}}"
+                                            <form  id="delete-designation-{{$data->id}}" action="{{route('admin.designation.destroy', $data->id)}}"
                                                    method="post" style="display:none;"
                                             >
                                                 @csrf
@@ -62,9 +63,13 @@
 
                                         </td>
                                     </tr>
-                                    @endforeach
-                                    </thead>
+                                @empty
+
                             </table>
+                            <div class="bg-danger text-center">
+                                <h2> There is no data available!</h2>
+                            </div>
+                            @endforelse
                         </div>
                     </div>
                 </div>
@@ -80,7 +85,7 @@
 
 <script type="text/javascript">
 
-    function deletedepartment(id) {
+    function deleteDesignation(id) {
 
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
@@ -101,7 +106,7 @@
         }).then((result) => {
             if (result.value) {
                 event.preventDefault();
-                document.getElementById('delete-department-' + id).submit();
+                document.getElementById('delete-designation-' + id).submit();
             } else if (
                 /* Read more about handling dismissals below */
                 result.dismiss === Swal.DismissReason.cancel

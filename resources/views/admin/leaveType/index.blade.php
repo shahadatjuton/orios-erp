@@ -52,14 +52,11 @@
                                         <td>{{$data->created_at}}</td>
                                         <td>
                                             <a class="btn btn-primary waves-effect" href="{{route('admin.leaveType.edit',$data->id)}}">
-                                                <i class="material-icons">edit </i>
+                                                <i class="far fa-edit"></i>
                                             </a>
-{{--                                            <a class="btn btn-danger waves-effect" href="{{route('admin.leaveType.destroy',$data->id)}}">--}}
-{{--                                                <i class="material-icons">Delete</i>--}}
-{{--                                            </a>--}}
 
                                             <button type="button" name="button"  class="btn btn-danger waves-effect" onclick="deleteleavetype({{$data->id}})">
-                                                <i class="material-icons" >delete</i>
+                                                <i class="fas fa-trash-alt"></i>
                                             </button>
                                             <form  id="delete-leave-type-{{$data->id}}" action="{{route('admin.leaveType.edit', $data->id)}}"
                                                    method="post" style="display:none;">

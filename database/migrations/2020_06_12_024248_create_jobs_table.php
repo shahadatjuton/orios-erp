@@ -15,8 +15,8 @@ class CreateJobsTable extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
-            $table->string('designation');
             $table->unsignedBigInteger('department_id');
+            $table->unsignedBigInteger('designation_id');
             $table->float('experience');
             $table->integer('vacancy');
             $table->dateTime('circular');
@@ -25,6 +25,9 @@ class CreateJobsTable extends Migration
             $table->boolean('status')->default(0);
             $table->foreign('department_id')
                 ->references('id')->on('departments')
+                ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('designation_id')
+                ->references('id')->on('designations')
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });

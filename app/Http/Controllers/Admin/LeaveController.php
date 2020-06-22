@@ -21,7 +21,9 @@ class LeaveController extends Controller
      */
     public function index()
     {
-     //
+        $leaves = Auth::user()->leaves()->get();
+//        $leaves = Leave::where('emp_name','User')->latest()->get();
+        return view('admin.leave.index',compact('leaves'));
     }
 
     /**
@@ -116,7 +118,6 @@ class LeaveController extends Controller
      */
     public function approve($id)
     {
-        return "okay";
        return $pendingleave=Leave::find($id);
         if($pendingleave->status == "")
         {

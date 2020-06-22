@@ -14,12 +14,9 @@
     <div class="container-fluid">
         <div class="block-header">
             <h2>
-                Department Table
+                CV Table
             </h2>
-            <a class="btn btn-primary waves-effect" href="{{route('admin.job.create')}}">
-{{--                <i class="material-icons">add</i>--}}
-                <span>Create Department</span>
-            </a>
+
         </div>
 
         <!-- Exportable Table -->
@@ -28,7 +25,7 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            Total Department
+                            Total CV
                             <span class="badge bg-blue">{{ $jobs->count() }}</span>
                         </h2>
                     </div>
@@ -50,8 +47,8 @@
                                 @foreach($jobs as $key=> $job)
                                     <tr>
                                         <td>{{ $key +1 }}</td>
-                                        <td>{{$job->designation}}</td>
-                                        <td>{{$job->department}}</td>
+                                        <td>{{$job->designation->name}}</td>
+                                        <td>{{$job->department->name}}</td>
                                         <td>{{$job->experience}}</td>
                                         <td>{{$job->vacancy}}</td>
                                         <td>{{$job->circular}}</td>

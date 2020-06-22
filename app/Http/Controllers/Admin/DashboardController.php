@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Job;
 use App\Leave;
 
 use App\Present;
+use App\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -14,9 +16,11 @@ use Illuminate\Support\Facades\Auth;
 class DashboardController extends Controller
 {
     public function index(){
+        $user = User::latest()->first();
+        $vacancy = Job::latest()->where('status',true)->first();
         $current_time = \Carbon\Carbon::now()->toDateString();
         $present = Auth::user()->presents()->latest()->first();
-        return view('admin.dashboard',compact('current_time','present'));
+        return view('admin.dashboard',compact('current_time','present','user','vacancy'));
     }
 
     /**

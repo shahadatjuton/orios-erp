@@ -40,6 +40,9 @@
                         <li>
                             <a href="{{route('superadmin.assessment.result')}}">Assessment Result</a>
                         </li>
+                        <li>
+                            <a href="{{route('superadmin.createUser')}}">Create New User</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="staffing">
@@ -51,9 +54,9 @@
                         <li>
                             <a href="{{route('superadmin.attendance.report')}}">Own Attendance Report</a>
                         </li>
-                        <li>
-                            <a href="{{route('superadmin.attendance.sheet')}}">Employees Attendance Sheet</a>
-                        </li>
+{{--                        <li>--}}
+{{--                            <a href="{{route('superadmin.attendance.sheet')}}">Employees Attendance Sheet</a>--}}
+{{--                        </li>--}}
                     </ul>
                 </li>
                 <li>
@@ -92,9 +95,6 @@
                         <li>
                             <a href="{{route('admin.job.index')}}">CV Bank</a>
                         </li>
-                        <li>
-                            <a href="">Assessment</a>
-                        </li>
                     </ul>
                 </li>
 
@@ -105,7 +105,7 @@
                             <a href="{{route('admin.application.index')}}">Application List</a>
                         </li>
                         <li>
-                            <a href="{{route('admin.leave.index')}}">Own Application</a>
+                            <a href="{{route('admin.leave.index')}}">Own Applications</a>
                         </li>
                         <li>
                             <a href="{{route('admin.leave.create')}}">Leave Application </a>
@@ -115,9 +115,9 @@
                 <li class="leave">
                     <a href="#attendanceSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Attendance</a>
                     <ul class="collapse list-unstyled" id="attendanceSubmenu">
-                        <li>
-                            <a href="">Attendance</a>
-                        </li>
+{{--                        <li>--}}
+{{--                            <a href="">Attendance</a>--}}
+{{--                        </li>--}}
                         <li>
                             <a href="{{route('admin.attendance.report')}}">Own Attendance Report</a>
                         </li>
@@ -131,6 +131,18 @@
                         </li>
                         <li>
                             <a href="{{route('admin.leaveType.create')}}">Create Leave Type</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="leave-type">
+                    <a href="#designationSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Designation</a>
+                    <ul class="collapse list-unstyled" id="designationSubmenu">
+                        <li>
+                            <a href="{{route('admin.designation.index')}}">Designation List</a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.designation.create')}}">Create Designation</a>
                         </li>
 
                     </ul>

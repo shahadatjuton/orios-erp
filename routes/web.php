@@ -53,6 +53,12 @@ Route::group(['as'=>'superadmin.','prefix'=>'superadmin','namespace'=>'SuperAdmi
     Route::get('attendance/report/','LeaveController@attendanceReport')->name('attendance.report');
     Route::get('employees/attendance/report/','LeaveController@attendanceSheet')->name('attendance.sheet');
 
+    Route::get('appointment/lettter/{id}','AssessmentController@appointmentLetter')->name('appointmentLetter');
+    Route::post('send/appointment/lettter/','AssessmentController@sendAppointmentLetter')->name('sendAppointmentLetter');
+
+    Route::get('create/user/','AssessmentController@createUser')->name('createUser');
+    Route::post('create/user/','AssessmentController@registerUser')->name('registerUser');
+
 
 
 });
@@ -74,6 +80,7 @@ Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware'
     Route::get('present/','DashboardController@present')->name('present');
 
     Route::resource('department','DepartmentController');
+    Route::resource('designation','DesignationController');
 
     Route::resource('job','JobController');
 

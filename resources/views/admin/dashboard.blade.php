@@ -75,7 +75,76 @@
                 </div>
             </div>
         </div>
+        <br><br>
+        <div class="row clearfix">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="body">
+                        <h2 class="text-center bg-info">**New Job Vacancy**</h2>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <ul class="list">
+                                    <li>
+                                        Designation:
+                                    </li>
+                                    <li>
+                                        Department:
+                                    </li>
+                                    <li>
+                                        No of Vacancy:
+                                    </li>
+                                    <li>
+                                        Deadline:
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <ul>
+                                    <li>
+                                        {{$vacancy->designation->name}}
+                                    </li>
+                                    <li>
+                                        {{$vacancy->department->name}}
+                                    </li>
+                                    <li>
+                                        {{$vacancy->vacancy}}
+                                    </li>
+                                    <li>
+                                        {{$vacancy->deadline->diffForHumans()}}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+
+            {{--            Right Card --}}
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header text-center" >
+                        <img src="{{asset('storage/Profile/'.$user->image)}}" alt="{{$user->name}}"  class="img-fluid" style="height: 70px; width: 80px;">
+                    </div>
+                    <div class="body" style="margin: 10px;">
+                        <ul>
+                            <li>
+                                Name: {{$user->name}}
+                            </li>
+                            <li>
+                                Designation: {{$vacancy->department->name}}
+                            </li>
+                            <li>
+                                Department: {{$vacancy->vacancy}}
+                            </li>
+                            <li>
+                                Joining Date: {{$vacancy->deadline->diffForHumans()}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 

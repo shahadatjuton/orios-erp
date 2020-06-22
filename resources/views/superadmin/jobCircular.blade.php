@@ -48,7 +48,7 @@
                                 @forelse($circulars as $key=> $data)
                                     <tr>
                                         <td>{{ $key +1 }}</td>
-                                        <td>{{$data->designation}}</td>
+                                        <td>{{$data->designation->name}}</td>
                                         <td>{{$data->department->name}}</td>
                                         <td>{{$data->experience}}</td>
                                         <td>{{$data->vacancy}}</td>

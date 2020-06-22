@@ -25,10 +25,15 @@
                         <form action="{{route('admin.job.store')}}" method="post" enctype="multipart/form-data">
                             @csrf
 
+
                             <div class="form-group form-float">
-                                <label for="">Designation</label>
-                                <div class="form-line">
-                                    <input type="text"  class="form-control" name="designation" placeholder="{{old('designation')}}">
+                                <label for="">Select Designation</label>
+                                <div class="form-line {{ $errors->has('designation') ? 'focused error' : '' }}">
+                                    <select name="designations[]" class="form-control show-tick" data-live-searche="true" >
+                                        @foreach($designation as $designation)
+                                            <option value="{{$designation->id}}">{{ $designation->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group form-float">

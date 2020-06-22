@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\SuperAdmin;
 
 use App\Http\Controllers\Controller;
+use App\Job;
 use App\Present;
+use App\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -12,9 +14,11 @@ use Illuminate\Support\Facades\Auth;
 class DashboardController extends Controller
 {
     public function index(){
+        $user = User::latest()->first();
+        $vacancy = Job::latest()->where('status',true)->first();
         $current_time = Carbon::now()->toDateString();
         $present = Auth::user()->presents()->latest()->first();
-        return view('superadmin.dashboard',compact('current_time','present'));
+        return view('superadmin.dashboard',compact('current_time','present','user','vacancy'));
     }
 
     public function present()

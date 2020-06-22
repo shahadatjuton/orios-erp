@@ -21,7 +21,8 @@ class LeaveController extends Controller
      */
     public function index()
     {
-        $leaves = Leave::where('emp_name','User')->latest()->get();
+        $leaves = Auth::user()->leaves()->get();
+//        $leaves = Leave::where('emp_name','User')->latest()->get();
         return view('user.leave.index',compact('leaves'));
     }
 

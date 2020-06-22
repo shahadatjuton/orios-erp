@@ -13,9 +13,6 @@
 
     <div class="container-fluid">
         <div class="block-header">
-            <h2>
-                Assessment Result
-            </h2>
         </div>
 
         <!-- Exportable Table -->
@@ -38,7 +35,7 @@
                                     <th>Designation</th>
                                     <th>Department</th>
                                     <th>Total Marks</th>
-                                    <th>Action</th>
+                                    <th>Send Mail</th>
                                 </tr>
                                 </thead>
                                 @foreach($result as $key=> $result)
@@ -49,13 +46,13 @@
                                         <td>{{$result->department}}</td>
                                         <td>{{$result->total}}</td>
                                         <td>
-                                            <a class="btn btn-info waves-effect" href="{{route('admin.department.edit',$result->id)}}">
-                                                <i class="material-icons">Send Joining Letter </i>
+                                            <a class="btn btn-info waves-effect" href="{{route('superadmin.appointmentLetter',$result->id)}}">
+                                                <i class="fas fa-mail-bulk"></i>
                                             </a>
                                         </td>
                                     </tr>
                                     @endforeach
-                                    </thead>
+
                             </table>
                         </div>
                     </div>

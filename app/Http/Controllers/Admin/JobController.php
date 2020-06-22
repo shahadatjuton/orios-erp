@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Department;
+use App\Designation;
 use App\Http\Controllers\Controller;
 use App\Job;
 use Brian2694\Toastr\Facades\Toastr;
@@ -29,7 +30,8 @@ class JobController extends Controller
     public function create()
     {
         $data = Department::all();
-        return view('admin.staffing.job',compact('data'));
+        $designation = Designation::all();
+        return view('admin.staffing.job',compact('data','designation'));
     }
 
     /**
@@ -40,10 +42,8 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
-
-
         $this->validate($request,[
-            'designation'=>'required',
+            'designations'=>'required',
             'departments'=>'required',
             'circular'=>'required',
             'deadline'=>'required',
@@ -53,11 +53,12 @@ class JobController extends Controller
         ]);
 
         $job =new Job();
-
-        $job->department_id =implode(',',$request->departments);
+        $designation_id = implode(',',$request->designations);
+        $department_id = implode(',',$request->departments);
+        $job->designation_id    = $designation_id;
+        $job->department_id     = $department_id;
         $job->experience =$request->experience;
         $job->vacancy =$request->vacancy;
-        $job->designation =$request->designation;
         $job->circular =$request->circular;
         $job->deadline =$request->deadline;
         $job->description =$request->description;

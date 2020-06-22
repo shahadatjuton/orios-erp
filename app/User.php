@@ -58,4 +58,10 @@ class User extends Authenticatable
     public function interViewInvitation(){
         return $this->belongsTo('App\interviewInvitation');
     }
+
+    public function applications(){
+        return $this->hasMany('App\Application');
+    }
+
+
 }

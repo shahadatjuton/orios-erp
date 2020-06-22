@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Department;
+use App\Designation;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
-class DepartmentController extends Controller
+class DesignationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $data = Department::all();
-        return view('admin.department.index',compact('data'));
+        $data = Designation::all();
+        return view('admin.designation.index',compact('data'));
     }
 
     /**
@@ -27,7 +27,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        return view('admin.department.create');
+        return view('admin.designation.create');
     }
 
     /**
@@ -42,11 +42,11 @@ class DepartmentController extends Controller
             'name'=>'required'
         ]);
 
-        $data = new Department();
+        $data = new Designation();
         $data->name = $request->name;
         $data->save();
         Toastr::success('Department created successfully!', 'success');
-        return redirect()->route('admin.department.index');
+        return redirect()->route('admin.designation.index');
     }
 
     /**
@@ -68,8 +68,8 @@ class DepartmentController extends Controller
      */
     public function edit($id)
     {
-        $data = Department::findOrFail($id);
-        return view('admin.department.edit',compact('data'));
+        $data = Designation::findOrFail($id);
+        return view('admin.designation.edit',compact('data'));
     }
 
     /**
@@ -81,11 +81,11 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data= Department::find($id);
+        $data= Designation::find($id);
         $data->name = $request->name;
         $data->save();
-        Toastr::success('Department updated successfully!', 'success');
-        return redirect()->route('admin.department.index');
+        Toastr::success('Department update successfully!', 'success');
+        return redirect()->route('admin.designation.index');
     }
 
     /**
@@ -96,8 +96,7 @@ class DepartmentController extends Controller
      */
     public function destroy($id)
     {
-
-        $department = Department::find($id);
+        $department = Designation::find($id);
         $department->delete();
         toastr::success('Data is deleted successfully!!','success');
         return redirect()->back();
