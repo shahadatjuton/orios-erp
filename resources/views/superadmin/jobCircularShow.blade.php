@@ -21,29 +21,25 @@
     <div class="container-fluid">
 
         <!-- Vertical Layout | With Floating Label -->
-        <a href="{{ route('superadmin.jobCircular')}}" class="btn btn-info waves-effect">BACK</a>
+        <a href="{{ route('superadmin.jobCircular')}}" class="btn btn-info waves-effect"><i class="fas fa-arrow-circle-left"></i></a>
 
-        @if($job->status==false)
+        @if($job->status==1)
 
+            <button type="button" name="button" class="bt btn-success pull-right" disabled>
+                <i class="far fa-check-circle"></i>
+                <span>Approved</span>
+            </button>
+        @else
             <button type="button" name="button" class="btn btn-success waves-effect pull-right" onclick="approveJob({{ $job->id }})">
-                <i class="material-icons">done </i>
-                <span>Approve</span>
+                <i class="far fa-check-circle"></i>
             </button>
 
             <form  id="approve-job-{{$job->id}}" action="{{route('superadmin.jobCircular.update',$job->id)}}"
-                   method="post" style="display:none;"
-            >
+                   method="post" style="display:none;">
                 @csrf
                 @method('PUT')
 
             </form>
-
-        @else
-
-            <button type="button" name="button" class="bt btn-success pull-right" disabled>
-                <i class="material-icons">done </i>
-                <span>Approved</span>
-            </button>
         @endif
         <br><br>
         <div class="row clearfix">
@@ -81,7 +77,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <ul>
                                     <li>
-                                        {{$job->designation}}
+                                        {{$job->designation->name}}
                                     </li>
                                     <li>
                                         {{$job->department->name}}

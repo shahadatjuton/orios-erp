@@ -31,10 +31,11 @@ Route::group(['as'=>'superadmin.','prefix'=>'superadmin','namespace'=>'SuperAdmi
     Route::get('job/applications/','JobController@index')->name('jobCircular');
     Route::get('job/applications/show/{id}','JobController@show')->name('jobCircular.show');
     Route::put('job/applications/update/{id}','JobController@update')->name('jobCircular.update');
-    Route::get('job/applications/{id}','JobController@destroy')->name('jobCircular.destroy');
+    Route::put('job/applications/{id}','JobController@destroy')->name('jobCircular.destroy');
 
     Route::resource('leaveApplication','LeaveApplicationController');
     Route::put('leave/application/reject/{id}','LeaveApplicationController@reject')->name('leaveApplication.reject');
+    Route::get('own/leave/application/','LeaveApplicationController@ownApplication')->name('ownApplication');
 
     Route::resource('application','ApplicationController');
     Route::put('application/reject/{id}','ApplicationController@reject')->name('application.reject');

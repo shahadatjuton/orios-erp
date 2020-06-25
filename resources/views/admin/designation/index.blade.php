@@ -12,13 +12,13 @@
 
 
     <div class="container-fluid">
-        <div class="block-header">
-
+        <div class="block-header mb-4">
             <a class="btn btn-primary waves-effect" href="{{route('admin.designation.create')}}">
-                <i class="fas fa-plus-circle"></i>
+                <i class="fa fa-plus" aria-hidden="true"></i>
                 <span>Create Designation</span>
             </a>
         </div>
+
 
         <!-- Exportable Table -->
         <div class="row clearfix">

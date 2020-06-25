@@ -13,9 +13,6 @@
 
     <div class="container-fluid">
         <div class="block-header">
-            <h2>
-                CV Bank
-            </h2>
         </div>
 
         <!-- Exportable Table -->
@@ -24,8 +21,8 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            Total Applications
-                            <span class="badge bg-blue">{{ $applications->count() }}</span>
+                            Total CV
+                            s{{ $applications->count() }}
                         </h2>
                     </div>
                     <div class="body">
@@ -60,11 +57,11 @@
                                         </td>
                                         <td>
                                             <a class="btn btn-info waves-effect" href="{{route('superadmin.application.show', $application->id)}}">
-                                                <i class="material-icons">visibility </i>
+                                                <i class="far fa-eye"></i>
                                             </a>
 
                                             <button type="button" name="button" class="btn btn-success waves-effect" onclick="approveApplication({{ $application->id }})">
-                                                <i class="material-icons">done </i>
+                                                <i class="far fa-check-circle"></i>
                                             </button>
 
                                             <form  id="approve-application-{{$application->id}}" action="{{route('superadmin.application.update', $application->id)}}"
@@ -76,7 +73,7 @@
                                             </form>
 
                                             <button type="button" name="button" class="btn btn-danger waves-effect" onclick="rejectApplication({{ $application->id }})">
-                                                <i class="material-icons">reject </i>
+                                                <i class="fas fa-trash-alt"></i>
                                             </button>
 
                                             <form  id="reject-application-{{$application->id}}" action="{{route('superadmin.application.reject', $application->id)}}"

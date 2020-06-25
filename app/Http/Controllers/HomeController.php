@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Job;
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -32,7 +33,8 @@ class HomeController extends Controller
 
 
     public function show(){
-        $circulars = Job::where('status',true)->get();
-        return view('welcome',compact('circulars'));
+        $circulars = Job::where('status',1)->latest()->limit(4)->get();
+        $user = User::where('role_id',3)->latest()->limit(2)->get();
+        return view('welcome',compact('circulars','user'));
     }
 }

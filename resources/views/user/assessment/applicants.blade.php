@@ -4,22 +4,30 @@
 
 @push('css')
 
-
+<style>
+    .active-cyan-2 input[type=text]:focus:not([readonly]) {
+        border-bottom: 1px solid #4dd0e1;
+        box-shadow: 0 1px 0 0 #4dd0e1;
+    }
+</style>
 @endpush
 
 
 @section('content')
 
     <div class="row clearfix">
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
             <!-- Top Search Area -->
             <div class="top-search-area">
                 <form action="{{route('search.applicant')}}" method="GET">
-                    <input type="search" name="keyword" value="{{ old('keyword') }}" placeholder="Search Applicant">
-                    <button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    <input type="search" class="form-control-sm  w-75" name="keyword" value="{{ old('keyword') }}" placeholder="Search Applicant">
+                    <button type="submit" class="btn"><i class="fas fa-search" aria-hidden="true"></i></button>
                 </form>
             </div>
         </div>
+    </div>
     <!-- Exportable Table -->
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -62,9 +70,7 @@
                                         </a>
                                     </td>
                                 </tr>
-                                </tr>
                                 @endforeach
-                                </thead>
                         </table>
                     </div>
                 </div>
@@ -74,7 +80,7 @@
     <!-- #END# Exportable Table -->
 
 @endsection
-
+si
 @push('js')
 
 

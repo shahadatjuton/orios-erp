@@ -10,12 +10,11 @@
 
                 <li class="{{ Request::is('superadmin/dashboard') ? 'active' : '' }}">
                     <a href="{{route('superadmin.dashboard')}}">
-                        <i class="material-icons">dashboard</i>
                         <span>Dashboard</span>
                     </a>
                 </li>
                 <li class="staffing">
-                    <a href="#staffingSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Job</a>
+                    <a href="#staffingSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Staffing</a>
                     <ul class="collapse list-unstyled" id="staffingSubmenu">
                         <li>
                             <a href="{{route('superadmin.jobCircular')}}">Job Applications</a>
@@ -23,13 +22,11 @@
                         <li>
                             <a href="{{route('superadmin.application.index')}}">CV Bank</a>
                         </li>
-                        <li>
-                            <a href="">Assessment</a>
-                        </li>
+
                     </ul>
                 </li>
                 <li class="staffing">
-                    <a href="#assessmentSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Assessment</a>
+                    <a href="#assessmentSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Onboarding</a>
                     <ul class="collapse list-unstyled" id="assessmentSubmenu">
                         <li>
                             <a href="{{route('superadmin.assessment.employees')}}">Invite for Assessment</a>
@@ -49,21 +46,29 @@
                     <a href="#leaveSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Leave</a>
                     <ul class="collapse list-unstyled" id="leaveSubmenu">
                         <li>
+                            <a href="{{route('superadmin.leaveApplication.create')}}">Create Leave Application</a>
+                        </li>
+                        <li>
+                            <a href="{{route('superadmin.ownApplication')}}">Own Leave Applications</a>
+                        </li>
+                        <li>
                             <a href="{{route('superadmin.leaveApplication.index')}}">Leave Applications</a>
                         </li>
+                    </ul>
+                </li>
+                <li class="staffing">
+                    <a href="#leaveAttendance" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Attendance</a>
+                    <ul class="collapse list-unstyled" id="leaveAttendance">
                         <li>
                             <a href="{{route('superadmin.attendance.report')}}">Own Attendance Report</a>
                         </li>
-{{--                        <li>--}}
-{{--                            <a href="{{route('superadmin.attendance.sheet')}}">Employees Attendance Sheet</a>--}}
-{{--                        </li>--}}
                     </ul>
                 </li>
                 <li>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">
-                        <i class="material-icons">input</i>
+                        <i class="fas fa-sign-out-alt"></i>
                         <span>logout</span>
                     </a>
 
@@ -82,7 +87,6 @@
 
                 <li class="{{ Request::is('admin/dashboard') ? 'active' : '' }}">
                     <a href="{{route('admin.dashboard')}}">
-                        <i class="material-icons">dashboard</i>
                         <span>Dashboard</span>
                     </a>
                 </li>
@@ -164,7 +168,7 @@
                     <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">
-                        <i class="material-icons">input</i>
+                        <i class="fas fa-sign-out-alt"></i>
                         <span>logout</span>
                     </a>
 
@@ -183,7 +187,6 @@
 
                 <li class="{{ Request::is('user/dashboard') ? 'active' : '' }}">
                     <a href="{{route('user.dashboard')}}">
-                        <i class="material-icons">dashboard</i>
                         <span>Dashboard</span>
                     </a>
                 </li>
@@ -202,7 +205,7 @@
                     </ul>
                 </li>
                 <li class="">
-                    <a href="#assessSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Assessment</a>
+                    <a href="#assessSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Onboarding</a>
                     <ul class="collapse list-unstyled" id="assessSubmenu">
                         <li>
                             <a href="{{route('user.assessment.index')}}">Invited Applicants</a>
@@ -214,7 +217,7 @@
                     <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">
-                        <i class="material-icons">input</i>
+                        <i class="fas fa-sign-out-alt"></i>
                         <span>logout</span>
                     </a>
 
@@ -232,7 +235,6 @@
 
                 <li class="{{ Request::is('applicant/dashboard') ? 'active' : '' }}">
                     <a href="{{route('applicant.dashboard')}}">
-                        <i class="material-icons">dashboard</i>
                         <span>Dashboard</span>
                     </a>
                 </li>
@@ -240,7 +242,7 @@
                     <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">
-                        <i class="material-icons">input</i>
+                        <i class="fas fa-sign-out-alt"></i>
                         <span>logout</span>
                     </a>
 

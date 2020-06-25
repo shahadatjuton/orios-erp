@@ -4,7 +4,6 @@
 
 @push('css')
 
-
 @endpush
 
 
@@ -13,9 +12,7 @@
 
     <div class="container-fluid">
         <div class="block-header">
-            <h2>
-                Job Circulars Table
-            </h2>
+
         </div>
 
         <!-- Exportable Table -->
@@ -24,7 +21,7 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            Total Leave Type
+                            Total Job Circulars
                             <span class="badge bg-blue">{{ $circulars->count() }}</span>
                         </h2>
                     </div>
@@ -38,10 +35,8 @@
                                     <th>Department</th>
                                     <th>Experience</th>
                                     <th>No Of Vacancy</th>
-                                    <th>Circular</th>
                                     <th>Deadline</th>
                                     <th>Status</th>
-                                    <th>View</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -50,32 +45,47 @@
                                         <td>{{ $key +1 }}</td>
                                         <td>{{$data->designation->name}}</td>
                                         <td>{{$data->department->name}}</td>
-                                        <td>{{$data->experience}}</td>
+                                        <td>{{$data->experience}} Years</td>
                                         <td>{{$data->vacancy}}</td>
-                                        <td>{{$data->circular->diffForHumans()}}</td>
-                                        <td>{{$data->deadline->diffForHumans()}}</td>
+                                        <td>{{$data->deadline->format('Y-m-d')}}</td>
                                         <td>
-                                            @if($data->status==true)
+                                            @if($data->status==1)
                                              Accepted
-                                             @else
+                                             @elseif($data->status==0)
                                                 Pending
+                                                @else
+                                                Rejected
                                             @endif
                                         </td>
                                         <td>
-                                        <a class="btn btn-info waves-effect" href="{{route('superadmin.jobCircular.show', $data->id)}}">
-                                            <i class="material-icons">visibility </i>
-                                        </a>
+                                            <a class="btn btn-info waves-effect" href="{{route('superadmin.jobCircular.show', $data->id)}}">
+                                                <i class="far fa-eye"></i>
+                                            </a>
+                                            <button type="button" name="button" class="btn btn-success waves-effect pull-right" onclick="approveJob({{ $data->id }})">
+                                                <i class="far fa-check-circle"></i>
+                                            </button>
+
+                                            <form  id="approve-job-{{$data->id}}" action="{{route('superadmin.jobCircular.update',$data->id)}}"
+                                                   method="post" style="display:none;"
+                                            >
+                                                @csrf
+                                                @method('PUT')
+
+                                            </form>
+                                            <button type="button" name="button" class="btn btn-danger waves-effect" onclick="rejectJob({{ $data->id }})">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                            <form  id="reject-job-{{$data->id}}" action="{{route('superadmin.jobCircular.destroy',$data->id)}}"
+                                                   method="post" style="display:none;">
+                                                @csrf
+                                                @method('PUT')
+                                                <input type="hidden" value="false" name="status">
+                                            </form>
                                         </td>
-                                        <td>
-                                            <a class="btn btn-primary" href="{{route('superadmin.jobCircular.update',$data->id)}}">Confirm</a>
-                                            <a class="btn btn-danger" href="{{route('superadmin.jobCircular.destroy',$data->id)}}">Cancel</a>
-                                        </td>
-                                    </tr>
                                     </tr>
                                 @empty
                                     <h2 class="bg-danger">There is no data found</h2>
                                     @endforelse
-                                    </thead>
                             </table>
                         </div>
                     </div>
@@ -92,7 +102,7 @@
 
 <script type="text/javascript">
 
-    function deleteleavetype(id) {
+    function rejectJob(id) {
 
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
@@ -104,16 +114,52 @@
 
         swalWithBootstrapButtons.fire({
             title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            text: "You want to Reject the application!",
             type: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Yes, delete it!',
+            confirmButtonText: 'Yes, Reject!',
             cancelButtonText: 'No, cancel!',
             reverseButtons: true
         }).then((result) => {
             if (result.value) {
                 event.preventDefault();
-                document.getElementById('delete-leave-type-' + id).submit();
+                document.getElementById('reject-job-' + id).submit();
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    'Your data is safe :)',
+                    'error'
+                )
+            }
+        })
+
+    }
+    //  Approve application
+    function approveJob(id) {
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You want to Accept the application!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, Accept!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                event.preventDefault();
+                document.getElementById('approve-job-' + id).submit();
             } else if (
                 /* Read more about handling dismissals below */
                 result.dismiss === Swal.DismissReason.cancel

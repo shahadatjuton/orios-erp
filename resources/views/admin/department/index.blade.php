@@ -12,9 +12,9 @@
 
 
     <div class="container-fluid">
-        <div class="block-header">
+        <div class="block-header mb-4">
             <a class="btn btn-primary waves-effect" href="{{route('admin.department.create')}}">
-{{--                <i class="material-icons">add</i>--}}
+                <i class="fa fa-plus" aria-hidden="true"></i>
                 <span>Create Department</span>
             </a>
         </div>
@@ -47,10 +47,10 @@
                                         <td>{{$data->created_at}}</td>
                                         <td>
                                             <a class="btn btn-info waves-effect" href="{{route('admin.department.edit',$data->id)}}">
-                                                <i class="material-icons">edit </i>
+                                                <i class="far fa-edit"></i>
                                             </a>
                                             <button type="button" name="button"  class="btn btn-danger waves-effect" onclick="deletedepartment({{$data->id}})">
-                                                <i class="material-icons" >delete</i>
+                                                <i class="fas fa-trash-alt"></i>
 
                                             </button>
                                             <form  id="delete-department-{{$data->id}}" action="{{route('admin.department.destroy', $data->id)}}"
@@ -63,7 +63,7 @@
                                         </td>
                                     </tr>
                                     @endforeach
-                                    </thead>
+
                             </table>
                         </div>
                     </div>

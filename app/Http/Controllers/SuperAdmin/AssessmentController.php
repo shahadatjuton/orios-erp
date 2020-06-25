@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\interviewInvitation;
 use App\Notifications\SendAppointmentLetter;
 use App\Rating;
+use App\Role;
 use App\User;
 use Brian2694\Toastr\Facades\Toastr;
 //use Faker\Provider\Image;
@@ -209,13 +210,15 @@ class AssessmentController extends Controller
     public function createUser(){
         $department = Department::all();
         $designation = Designation::all();
-        return view('superadmin.assessment.createUser',compact('designation','department'));
+        $roles = Role::where('name', '!=', 'Applicant')->get();
+        return view('superadmin.assessment.createUser',compact('designation','department','roles'));
     }
 
     public function registerUser(Request $request){
         $this->validate($request,[
             'designations'=>'required',
             'departments'=>'required',
+            'roles'=>'required',
             'name' => 'required', 'string', 'max:255',
             'email' => 'required', 'string', 'email', 'max:255', 'unique:users',
             'password' => 'required', 'string', 'min:8', 'confirmed',
@@ -252,13 +255,14 @@ class AssessmentController extends Controller
         $user =new User();
         $designation_id = implode(',',$request->designations);
         $department_id = implode(',',$request->departments);
+        $role_id = implode(',',$request->roles);
         $user->designation    = $designation_id;
         $user->department     = $department_id;
         $user->name= $request->name;
         $user->email =$request->email;
         $user->password = Hash::make($request->password);
         $user->image = "default.png";
-        $user->role_id = 3;
+        $user->role_id = $role_id;
         $user->save();
         Toastr::success('New user created successfully', 'success');
         return redirect()->route('superadmin.dashboard');

@@ -12,14 +12,9 @@
 
 
     <div class="container-fluid">
-        <div class="block-header">
-            <h2>
-                Leave Type Table
-
-            </h2>
-
-            <a class="btn btn-primary waves-effect" href="{{route('admin.leaveType.create')}}">
-{{--                <i class="material-icons">add</i>--}}
+        <div class="block-header mb-4">
+            <a class="btn btn-primary waves-effect" href="{{route('admin.designation.create')}}">
+                <i class="fa fa-plus" aria-hidden="true"></i>
                 <span>Create Leave Type</span>
             </a>
         </div>
@@ -66,7 +61,7 @@
                                         </td>
                                     </tr>
                                     @endforeach
-                                    </thead>
+
                             </table>
                         </div>
                     </div>

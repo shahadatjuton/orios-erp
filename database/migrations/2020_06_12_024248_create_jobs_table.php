@@ -22,7 +22,7 @@ class CreateJobsTable extends Migration
             $table->dateTime('circular');
             $table->dateTime('deadline');
             $table->text('description');
-            $table->boolean('status')->default(0);
+            $table->integer('status')->default(0);
             $table->foreign('department_id')
                 ->references('id')->on('departments')
                 ->onUpdate('cascade')->onDelete('cascade');

@@ -82,9 +82,9 @@
 
                                         </td>
                                     </tr>
-                                    </tr>
+
                                     @endforeach
-                                    </thead>
+
                             </table>
                         </div>
                     </div>

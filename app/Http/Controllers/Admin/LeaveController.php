@@ -146,15 +146,25 @@ class LeaveController extends Controller
         return redirect()->back();
     }
 
-
+//
+//    public function attendanceReport(){
+//
+//        $user = Auth::user();
+////        $last_week_attendance = Present::whereDate('created_at',Carbon::now()->subWeek())->count();
+//        $total_attendance = Auth::user()->presents()
+//            ->where('attendance','1')->count();
+//
+//        return view('admin.leave.attendanceSheet',compact('total_attendance','user'));
+//
+//    }
     public function attendanceReport(){
-
         $user = Auth::user();
 //        $last_week_attendance = Present::whereDate('created_at',Carbon::now()->subWeek())->count();
         $total_attendance = Auth::user()->presents()
             ->where('attendance','1')->count();
 
-        return view('admin.leave.attendanceSheet',compact('total_attendance','user'));
+        $attendance = Auth::user()->presents()->get();
+        return view('admin.leave.attendanceSheet',compact('total_attendance','user','attendance'));
 
     }
 

@@ -13,9 +13,7 @@
 
     <div class="container-fluid">
         <div class="block-header">
-            <h2>
-                CV Bank
-            </h2>
+
         </div>
 
         <!-- Exportable Table -->
@@ -44,9 +42,10 @@
                                 @foreach($applications as $key=> $application)
                                     <tr>
                                         <td>{{ $key +1 }}</td>
-                                        <td>{{$application->emp_name}}</td>
+                                        <td>{{$application->user_id}}</td>
                                         <td>{{$application->str_date}}</td>
                                         <td>{{$application->end_date}}</td>
+                                        <td>{{$application->reason}}</td>
                                         <td>
                                             @if($application->status == 1)
                                                 Accepted
@@ -58,11 +57,11 @@
                                         </td>
                                         <td>
                                             <a class="btn btn-info waves-effect" href="{{route('superadmin.leaveApplication.show', $application->id)}}">
-                                                <i class="material-icons">visibility </i>
+                                                <i class="far fa-eye"></i>
                                             </a>
 
                                             <button type="button" name="button" class="btn btn-success waves-effect" onclick="approveApplication({{ $application->id }})">
-                                                <i class="material-icons">done </i>
+                                                <i class="far fa-check-circle"></i>
                                             </button>
 
                                             <form  id="approve-application-{{$application->id}}" action="{{route('superadmin.leaveApplication.update', $application->id)}}"
@@ -74,7 +73,7 @@
                                             </form>
 
                                             <button type="button" name="button" class="btn btn-danger waves-effect" onclick="rejectApplication({{ $application->id }})">
-                                                <i class="material-icons">reject </i>
+                                                <i class="fas fa-trash-alt"></i>
                                             </button>
 
                                             <form  id="reject-application-{{$application->id}}" action="{{route('superadmin.leaveApplication.reject', $application->id)}}"
@@ -88,9 +87,7 @@
 
                                         </td>
                                     </tr>
-                                    </tr>
                                     @endforeach
-                                    </thead>
                             </table>
                         </div>
                     </div>

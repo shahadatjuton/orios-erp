@@ -28,7 +28,7 @@
                             <div class="form-group form-float">
                                 <label for="">Designation</label>
                                 <div class="form-line">
-                                    <input type="text"  class="form-control" name="designation" value="{{$job->designation}}">
+                                    <input type="text"  class="form-control" name="designation" value="{{$job->designation->name}}">
                                 </div>
                             </div>
                             <div class="form-group form-float">

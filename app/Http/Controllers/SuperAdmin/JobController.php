@@ -75,13 +75,13 @@ class JobController extends Controller
     {
         $pendingJob=Job::find($id);
 
-        if($pendingJob->status == false)
+        if($pendingJob->status == 1)
         {
-            $pendingJob->status=true;
+            Toastr::Info('The job is already approved','info');
+        }else{
+            $pendingJob->status=1;
             $pendingJob->save();
             toastr::success('The job is approved successfully','success');
-        }else{
-            Toastr::Info('The job is already approved','info');
 
         }
         return redirect()->back();
@@ -96,7 +96,18 @@ class JobController extends Controller
      */
     public function destroy($id)
     {
-        return "okay";
+        $pendingJob=Job::find($id);
+
+        if($pendingJob->status == 2)
+        {
+            Toastr::Info('The job is already rejected','info');
+
+        }else{
+            $pendingJob->status=2;
+            $pendingJob->save();
+            toastr::success('The job is rejected successfully','success');
+        }
+        return redirect()->back();
 
     }
 }

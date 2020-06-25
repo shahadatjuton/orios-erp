@@ -12,15 +12,17 @@
 
 
     <div class="container-fluid">
-        <div class="block-header">
-            <h2>
+        <div class="block-header bg-info">
+            <h2 class="text-center">
                 Own Attendance Sheet
             </h2>
         </div>
 
         <!-- Exportable Table -->
         <div class="row clearfix">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="header">
                     </div>
@@ -29,23 +31,28 @@
                             <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                 <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>E-mail</th>
-                                    <th>Last Week</th>
-                                    <th>Last Month</th>
-                                    <th>Last Year</th>
-                                    <th>Total Attendance</th>
+                                    <th>Date</th>
+                                    <th>Attendance Status</th>
                                 </tr>
                                 </thead>
+                                <tbody>
+                                @forelse($attendance as $attendance)
                                     <tr>
-
-                                        <td>{{$user->name}}</td>
-                                        <td>{{$user->email}}</td>
-                                        <td>1</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>{{$total_attendance}}</td>
+                                        <td>{{$attendance->created_at->format("d - M Y")}}</td>
+                                        <td>
+                                            @if($attendance->attendance == 1)
+                                                Present
+                                            @else
+                                                Absent
+                                            @endif
+                                        </td>
+                                        @empty
+                                            <div class="bg-danger">
+                                                <h2>There is no data available!</h2>
+                                            </div>
                                     </tr>
+                                @endforelse
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -60,43 +67,43 @@
 @push('js')
 
 
-<script type="text/javascript">
+    <script type="text/javascript">
 
-    function deleteleavetype(id) {
+        function deleteleavetype(id) {
 
-        const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: 'btn btn-success',
-                cancelButton: 'btn btn-danger'
-            },
-            buttonsStyling: false
-        })
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            })
 
-        swalWithBootstrapButtons.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'No, cancel!',
-            reverseButtons: true
-        }).then((result) => {
-            if (result.value) {
-                event.preventDefault();
-                document.getElementById('delete-leave-type-' + id).submit();
-            } else if (
-                /* Read more about handling dismissals below */
-                result.dismiss === Swal.DismissReason.cancel
-            ) {
-                swalWithBootstrapButtons.fire(
-                    'Cancelled',
-                    'Your data is safe :)',
-                    'error'
-                )
-            }
-        })
+            swalWithBootstrapButtons.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.value) {
+                    event.preventDefault();
+                    document.getElementById('delete-leave-type-' + id).submit();
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                        'Cancelled',
+                        'Your data is safe :)',
+                        'error'
+                    )
+                }
+            })
 
-    }
+        }
 
-</script>
+    </script>
 @endpush

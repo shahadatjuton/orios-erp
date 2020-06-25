@@ -125,7 +125,8 @@ class LeaveController extends Controller
         $total_attendance = Auth::user()->presents()
           ->where('attendance','1')->count();
 
-      return view('user.leave.attendanceSheet',compact('total_attendance','user'));
+        $attendance = Auth::user()->presents()->get();
+        return view('user.leave.attendanceSheet',compact('total_attendance','user','attendance'));
 
     }
 }

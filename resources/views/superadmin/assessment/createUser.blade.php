@@ -78,13 +78,23 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="form-group form-float">
+                                <label><b>Select Role</b></label>
+                                <div class="form-line {{ $errors->has('role') ? 'focused error' : '' }}">
+                                    <select name="roles[]" class="form-control show-tick" data-live-searche="true" >
+                                        @foreach($roles as $role)
+                                            <option value="{{$role->id}}">{{ $role->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
 {{--                            <div class="form-group form-float">--}}
 {{--                                <label><b>Upload Image</b></label>--}}
 {{--                                <div class="form-line">--}}
 {{--                                    <input type="file"  class="form-control" name="image" >--}}
 {{--                                </div>--}}
 {{--                            </div>--}}
-                            <button type="submit" class="btn btn-success m-t-15 waves-effect">Send</button>
+                            <button type="submit" class="btn btn-success m-t-15 waves-effect">Save</button>
                         </form>
                     </div>
                 </div>

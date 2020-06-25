@@ -13,7 +13,8 @@
 
 @section('content')
 
-    <h1>WELCOME TO ORIOS</h1>
+    <h1 class="text-center">WELCOME TO ORIOS</h1>
+
     <div class="container-fluid">
         <br><br>
         <div class="row clearfix">
@@ -82,37 +83,14 @@
                     <div class="body">
                         <h2 class="text-center bg-info">**New Job Vacancy**</h2>
                         <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <ul class="list">
-                                    <li>
-                                        Designation:
-                                    </li>
-                                    <li>
-                                        Department:
-                                    </li>
-                                    <li>
-                                        No of Vacancy:
-                                    </li>
-                                    <li>
-                                        Deadline:
-                                    </li>
-                                </ul>
+                            @foreach($vacancy as $vacancy)
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
+                                <a href="{{route('superadmin.jobCircular.show', $vacancy->id)}}"><p><b>{{$vacancy->designation->name}}</b></p></a>
+                                <p>{{$vacancy->department->name}}</p>
                             </div>
+                            @endforeach
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <ul>
-                                    <li>
-                                        {{$vacancy->designation->name}}
-                                    </li>
-                                    <li>
-                                        {{$vacancy->department->name}}
-                                    </li>
-                                    <li>
-                                        {{$vacancy->vacancy}}
-                                    </li>
-                                    <li>
-                                        {{$vacancy->deadline->diffForHumans()}}
-                                    </li>
-                                </ul>
+
                             </div>
                         </div>
                     </div>
@@ -122,28 +100,37 @@
 
             {{--            Right Card --}}
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="card">
-                    <div class="header text-center" >
-                        <img src="{{asset('storage/Profile/'.$user->image)}}" alt="{{$user->name}}"  class="img-fluid" style="height: 70px; width: 80px;">
+                <div class="row clearfix">
+                    @foreach($user as $user)
+                        @php
+                         $designation = \App\Designation::findOrFail($user->designation);
+                        $department = \App\Department::findOrFail($user->department);
+
+                        @endphp
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="card">
+                            <div class="header text-center" >
+                                <img src="{{asset('storage/Profile/'.$user->image)}}" alt="{{$user->name}}"  class="img-fluid" style="height: 70px; width: 80px;">
+                            </div>
+                            <div class="body" style="margin: 10px;">
+                                <ul>
+                                    <li>
+                                        {{$user->name}}
+                                    </li>
+                                    <li>
+                                        {{$designation->name}}
+                                    </li>
+                                    <li>
+                                        {{$department->name}}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <div class="body" style="margin: 10px;">
-                        <ul>
-                            <li>
-                                Name: {{$user->name}}
-                            </li>
-                            <li>
-                                Designation: {{$vacancy->department->name}}
-                            </li>
-                            <li>
-                                Department: {{$vacancy->vacancy}}
-                            </li>
-                            <li>
-                                Joining Date: {{$vacancy->deadline->diffForHumans()}}
-                            </li>
-                        </ul>
+                    @endforeach
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     </div>
                 </div>
-            </div>
         </div>
 
 

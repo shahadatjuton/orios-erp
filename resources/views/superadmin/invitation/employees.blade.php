@@ -13,13 +13,6 @@
 
     <div class="container-fluid">
         <div class="block-header">
-            <h2>
-                Employees List
-            </h2>
-{{--            <a class="btn btn-primary waves-effect" href="{{route('admin.leaveType.create')}}">--}}
-{{--                <i class="material-icons">add</i>--}}
-{{--                <span>Create Leave Type</span>--}}
-{{--            </a>--}}
         </div>
 
         <!-- Exportable Table -->
@@ -42,7 +35,7 @@
                                     <th>Designation</th>
                                     <th>Department</th>
                                     <th>Email</th>
-                                    <th>Action</th>
+                                    <th>Invite</th>
                                 </tr>
                                 </thead>
                                 @foreach($employees as $key=> $employee)
@@ -52,15 +45,17 @@
                                         <td>{{$employee->designation}}</td>
                                         <td>{{$employee->department}}</td>
                                         <td>{{$employee->email}}</td>
-                                        <td>
-                                            <a class="btn btn-info waves-effect" href="{{route('superadmin.assessment.interviwer', $employee->id)}}">
-                                                <i class="material-icons">Invite </i>
+                                        <td class="text-center">
+{{--                                            <a class="btn btn-info waves-effect" href="{{route('superadmin.assessment.interviwer', $employee->id)}}">--}}
+{{--                                                <i class="fas fa-mail-bulk"></i>--}}
+{{--                                            </a>--}}
+                                            <a class="btn btn-info waves-effect" href="mailto:{{$employee->email}}">
+                                                <i class="fas fa-mail-bulk"></i>
                                             </a>
                                         </td>
                                     </tr>
-                                    </tr>
                                     @endforeach
-                                    </thead>
+
                             </table>
                         </div>
                     </div>
