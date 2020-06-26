@@ -40,19 +40,22 @@
                                 </tr>
                                 </thead>
                                 @foreach($applications as $key=> $application)
+                                    @php
+                                    $user = \App\User::findOrFail($application->user_id);
+                                    @endphp
                                     <tr>
                                         <td>{{ $key +1 }}</td>
-                                        <td>{{$application->user_id}}</td>
-                                        <td>{{$application->str_date}}</td>
-                                        <td>{{$application->end_date}}</td>
-                                        <td>{{$application->reason}}</td>
+                                        <td>{{$user->name}}</td>
+                                        <td>{{$application->str_date->format('dM Y')}}</td>
+                                        <td>{{$application->end_date->format('dM Y')}}</td>
+{{--                                        <td>{{$application->reason}}</td>--}}
                                         <td>
                                             @if($application->status == 1)
-                                                Accepted
+                                                <p class="bg-success text-center">Accepted</p>
                                             @elseif($application->status == 2)
-                                                Rejected
+                                                <p class="bg-danger text-center">Rejected</p>
                                             @else
-                                                Pending
+                                                <p class="bg-warning text-center">Pending</p>
                                             @endif
                                         </td>
                                         <td>

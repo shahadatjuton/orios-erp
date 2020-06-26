@@ -26,8 +26,7 @@
         @if($leave->status=="0")
 
             <button type="button" name="button" class="btn btn-success waves-effect pull-right" onclick="approveLeave({{ $leave->id }})">
-                <i class="material-icons">done </i>
-                <span>Approve</span>
+                <i class="far fa-check-circle"></i>
             </button>
 
             <form  id="approve-leave-{{$leave->id}}" action="{{route('superadmin.leaveApplication.update', $leave->id)}}"
@@ -41,7 +40,7 @@
         @elseif($leave->status==true)
 
             <button type="button" name="button" class="bt btn-success pull-right" disabled>
-                <i class="material-icons">done </i>
+                <i class="far fa-check-circle"></i>
                 <span>Approved</span>
             </button>
         @elseif($leave->status==false)

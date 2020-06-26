@@ -97,7 +97,7 @@
                             <a href="{{route('admin.job.create')}}">Job Requisition</a>
                         </li>
                         <li>
-                            <a href="{{route('admin.job.index')}}">CV Bank</a>
+                            <a href="{{route('admin.job.index')}}">Created Jobs</a>
                         </li>
                     </ul>
                 </li>

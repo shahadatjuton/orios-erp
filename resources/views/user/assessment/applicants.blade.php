@@ -80,7 +80,7 @@
     <!-- #END# Exportable Table -->
 
 @endsection
-si
+
 @push('js')
 
 

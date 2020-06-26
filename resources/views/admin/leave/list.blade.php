@@ -38,8 +38,8 @@
                                     <tr>
                                         <td>{{ $key +1 }}</td>
                                         <td>{{$application->emp_name}}</td>
-                                        <td>{{$application->str_date}}</td>
-                                        <td>{{$application->end_date}}</td>
+                                        <td>{{$application->str_date->format('dM Y')}}</td>
+                                        <td>{{$application->end_date->format('dM Y')}}</td>
                                         <td>
                                             @if($application->status == 1)
                                                 Accepted

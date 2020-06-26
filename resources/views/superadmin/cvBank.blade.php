@@ -22,7 +22,7 @@
                     <div class="header">
                         <h2>
                             Total CV
-                            s{{ $applications->count() }}
+                            {{ $applications->count() }}
                         </h2>
                     </div>
                     <div class="body">

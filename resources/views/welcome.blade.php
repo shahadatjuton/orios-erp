@@ -36,24 +36,37 @@
         <div class="site-menu-inner" id="ftco-navbar">
             <ul class="list-unstyled">
                 @if (Route::has('login'))
-                    <div class="top-right links">
+{{--                    <div class="top-right links">--}}
                         @auth
                             @if(Auth::user()->role->id ==1)
-                                <a href="{{route('superadmin.dashboard')}}">Dashboard</a>
+                                <li><a href="{{route('superadmin.dashboard')}}">Dashboard</a></li>
                             @elseif (Auth::user()->role->id == 2)
-                                <a href="{{route('admin.dashboard')}}">Dashboard</a>
+                                <li><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
                             @elseif (Auth::user()->role->id == 3)
-                                <a href="{{route('user.dashboard')}}">Dashboard</a>
+                                <li><a href="{{route('user.dashboard')}}">Dashboard</a></li>
                             @elseif (Auth::user()->role->id == 4)
-                                <a href="{{route('applicant.dashboard')}}">Dashboard</a>
+                                <li><a href="{{route('applicant.dashboard')}}">Dashboard</a></li>
                             @endif
+                             <li>
+                                 <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    <span>Logout</span>
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                             </li>
+
                         @else
                             <li><a href="{{route('login')}}">Login</a></li>
                             @if (Route::has('register'))
-                                <a href="{{ route('register') }}">Register</a>
+                                <li><a href="{{ route('register') }}">Register</a></li>
                             @endif
                         @endauth
-                    </div>
+{{--                    </div>--}}
                 @endif
 {{--                                                <li><a href="{{route('register')}}">Registration</a></li>--}}
 
@@ -112,7 +125,7 @@
                                         <h3><a href="{{route('login')}}">{{$circular->department->name}}</a></h3>
                                     </div>
                                     <div class="price order-2">
-                                        <strong>{{$circular->deadline->format('y-m-d')}}</strong>
+                                        Deadline-<strong>{{$circular->deadline->format('y-m-d')}}</strong>
                                     </div>
                                 </div> <!-- .menu-food-item -->
                             </div>

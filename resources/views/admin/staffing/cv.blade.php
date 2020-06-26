@@ -13,10 +13,6 @@
 
     <div class="container-fluid">
         <div class="block-header">
-            <h2>
-                CV Table
-            </h2>
-
         </div>
 
         <!-- Exportable Table -->
@@ -25,7 +21,7 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            Total CV
+                            Total Jobs
                             <span class="badge bg-blue">{{ $jobs->count() }}</span>
                         </h2>
                     </div>
@@ -41,6 +37,7 @@
                                     <th>No of Vacancy</th>
                                     <th>Circulation Date</th>
                                     <th>Deadline</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -49,16 +46,22 @@
                                         <td>{{ $key +1 }}</td>
                                         <td>{{$job->designation->name}}</td>
                                         <td>{{$job->department->name}}</td>
-                                        <td>{{$job->experience}}</td>
+                                        <td>{{$job->experience}} Years</td>
                                         <td>{{$job->vacancy}}</td>
-                                        <td>{{$job->circular}}</td>
-                                        <td>{{$job->deadline}}</td>
+                                        <td>{{$job->circular->format('dM Y')}}</td>
+                                        <td>{{$job->deadline->format('dM Y')}}</td>
                                         <td>
-                                            <a class="btn btn-info waves-effect" href="{{route('admin.department.edit',$job->id)}}">
-                                                <i class="material-icons">edit </i>
-                                            </a>
+                                            @if($job->status == 1)
+                                             <p class="bg-success">Accepted</p>
+                                            @elseif($job->status ==2)
+                                            <p class="bg-danger">Rejected</p>
+                                            @else
+                                            <p class="bg-warning">Pending</p>
+                                            @endif
+                                        </td>
+                                        <td>
                                             <button type="button" name="button"  class="btn btn-danger waves-effect" onclick="deletedepartment({{$job->id}})">
-                                                <i class="material-icons" >delete</i>
+                                                <i class="fas fa-trash" ></i>
 
                                             </button>
                                             <form  id="delete-department-{{$job->id}}" action="{{route('admin.department.destroy', $job->id)}}"
@@ -71,7 +74,7 @@
                                         </td>
                                     </tr>
                                     @endforeach
-                                    </thead>
+
                             </table>
                         </div>
                     </div>

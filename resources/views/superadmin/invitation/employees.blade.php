@@ -32,18 +32,22 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
-                                    <th>Designation</th>
-                                    <th>Department</th>
+{{--                                    <th>Designation</th>--}}
+{{--                                    <th>Department</th>--}}
                                     <th>Email</th>
                                     <th>Invite</th>
                                 </tr>
                                 </thead>
                                 @foreach($employees as $key=> $employee)
+{{--                                    @php--}}
+{{--                                        $designation = \App\Designation::find($employee->designation);--}}
+{{--                                        $department = \App\Department::find($employee->department);--}}
+{{--                                    @endphp--}}
                                     <tr>
                                         <td>{{ $key +1 }}</td>
                                         <td>{{$employee->name}}</td>
-                                        <td>{{$employee->designation}}</td>
-                                        <td>{{$employee->department}}</td>
+{{--                                        <td>{{$employee->designation}}</td>--}}
+{{--                                        <td>{{$employee->department}}</td>--}}
                                         <td>{{$employee->email}}</td>
                                         <td class="text-center">
 {{--                                            <a class="btn btn-info waves-effect" href="{{route('superadmin.assessment.interviwer', $employee->id)}}">--}}
