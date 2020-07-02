@@ -56,7 +56,9 @@
                                             Pending
                                                 @endif
                                         </td>
-                                        <td><a class="btn-info" href="{{asset('storage/cv/'.$application->cv)}}" target="_blank"> Download CV</a></td>
+                                        <td>
+                                            <a class="btn-info" href="{{asset('storage/cv/'.$application->cv)}}" target="_blank"> Download CV</a>
+                                        </td>
 {{--                                            <td>--}}
 {{--                                                <iframe class="embed-responsive-item" src="{{asset('storage/cv/'.$application->cv) }}">View</iframe>--}}
 {{--                                                <embed src= "{{asset('storage/cv/'.$application->cv) }}" width= "500" height= "375">--}}

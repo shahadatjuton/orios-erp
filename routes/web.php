@@ -49,6 +49,8 @@ Route::group(['as'=>'superadmin.','prefix'=>'superadmin','namespace'=>'SuperAdmi
     Route::post('assessment/applicant/invitation/','AssessmentController@applicantInvitation')->name('assessment.applicantInvitation');
     Route::get('assessment/result/','AssessmentController@result')->name('assessment.result');
 //    Route::resource('assessment','AssessmentController');
+    Route::resource('assessment','AssessmentController');
+
 
     Route::get('present/','DashboardController@present')->name('present');
     Route::get('attendance/report/','LeaveController@attendanceReport')->name('attendance.report');
@@ -91,6 +93,9 @@ Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware'
     Route::resource('attendance','AttendanceController');
     Route::get('present/report/','LeaveController@attendanceReport')->name('attendance.report');
 
+    Route::resource('assessment','AssessmentController');
+
+
 
 ////================*****Leave Type*****========================
 //    Route::get('leave/type/list', 'LeaveTypeController@index')->name('leaveType.index');
@@ -109,7 +114,7 @@ Route::group(['as'=>'user.','prefix'=>'user','namespace'=>'User','middleware'=>[
     Route::resource('leave','LeaveController');
 
     Route::get('present/','DashboardController@present')->name('present');
-    Route::resource('assessment','AssessmentController');
+//    Route::resource('assessment','AssessmentController');
     Route::get('attendance/report/','LeaveController@attendanceReport')->name('attendance.report');
 
 

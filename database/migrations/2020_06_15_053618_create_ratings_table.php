@@ -26,6 +26,12 @@ class CreateRatingsTable extends Migration
             $table->integer('literacy');
             $table->integer('communication_skill');
             $table->float('total');
+            $table->integer('action');
+            $table->double('written_mark');
+            $table->text('remark');
+            $table->double('salary');
+            $table->date('expected_joining_date');
+            $table->date('proposed_joining_date');
             $table->boolean('status')->default(0);
             $table->foreign('application_id')
                 ->references('id')->on('applications')

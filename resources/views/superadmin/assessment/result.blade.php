@@ -34,21 +34,50 @@
                                     <th>Name</th>
                                     <th>Designation</th>
                                     <th>Department</th>
+                                    <th>Written Marks</th>
+                                    <th>Assessment Marks</th>
                                     <th>Total Marks</th>
+                                    <th>Status</th>
                                     <th>Send Mail</th>
                                 </tr>
                                 </thead>
                                 @foreach($result as $key=> $result)
+                                    @php
+
+                                        $application = \App\Application::findOrFail($result->application_id);
+                                        $applicant  = \App\User::findOrFail($application->user_id);
+                                    @endphp
                                     <tr>
                                         <td>{{ $key +1 }}</td>
                                         <td>{{$result->name}}</td>
                                         <td>{{$result->designation}}</td>
                                         <td>{{$result->department}}</td>
+                                        <td>{{$result->written_mark}}</td>
                                         <td>{{$result->total}}</td>
+                                        <td>{{$result->written_mark + $result->total}}</td>
                                         <td>
-                                            <a class="btn btn-info waves-effect" href="{{route('superadmin.appointmentLetter',$result->id)}}">
+                                            @if($result->action == 1)
+                                                <div>
+                                                    <p class="bg-success text-center">Accepted</p>
+                                                </div>
+                                            @elseif($result->action == 2)
+                                                <div>
+                                                    <p class="bg-danger text-center">Rejected</p>
+                                                </div>
+                                             @else
+                                                <div>
+                                                    <p class="bg-warning text-center">Hold</p>
+                                                </div>
+                                              @endif
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-info waves-effect" href="mailto:{{$applicant->email}}">
                                                 <i class="fas fa-mail-bulk"></i>
                                             </a>
+                                            
+{{--                                            <a class="btn btn-info waves-effect" href="{{route('superadmin.appointmentLetter',$result->id)}}">--}}
+{{--                                                <i class="fas fa-mail-bulk"></i>--}}
+{{--                                            </a>--}}
                                         </td>
                                     </tr>
                                     @endforeach

@@ -65,7 +65,7 @@
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->email}}</td>
                                     <td>
-                                        <a class="btn btn-info waves-effect" href="{{route('user.assessment.show', $applicant->id)}}">
+                                        <a class="btn btn-info waves-effect" href="{{route('superadmin.assessment.show', $applicant->id)}}">
                                             <i class="material-icons">Go To Assess </i>
                                         </a>
                                     </td>

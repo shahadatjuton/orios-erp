@@ -35,6 +35,9 @@
                             <a href="{{route('superadmin.assessment.applications')}}">Invite for Interview</a>
                         </li>
                         <li>
+                            <a href="{{route('superadmin.assessment.index')}}">Invited Applicants</a>
+                        </li>
+                        <li>
                             <a href="{{route('superadmin.assessment.result')}}">Assessment Result</a>
                         </li>
                         <li>
@@ -99,6 +102,15 @@
                         <li>
                             <a href="{{route('admin.job.index')}}">Created Jobs</a>
                         </li>
+                    </ul>
+                </li>
+                <li class="">
+                    <a href="#assessSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Onboarding</a>
+                    <ul class="collapse list-unstyled" id="assessSubmenu">
+                        <li>
+                            <a href="{{route('admin.assessment.index')}}">Invited Applicants</a>
+                        </li>
+
                     </ul>
                 </li>
 
@@ -204,15 +216,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="">
-                    <a href="#assessSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Onboarding</a>
-                    <ul class="collapse list-unstyled" id="assessSubmenu">
-                        <li>
-                            <a href="{{route('user.assessment.index')}}">Invited Applicants</a>
-                        </li>
 
-                    </ul>
-                </li>
                 <li>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
