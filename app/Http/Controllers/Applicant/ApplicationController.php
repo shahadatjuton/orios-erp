@@ -7,7 +7,10 @@ use App\Http\Controllers\Controller;
 use App\Job;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ApplicationController extends Controller
 {
@@ -39,10 +42,45 @@ class ApplicationController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $this->validate($request,[
             'designation'=>'required',
             'description'=>'required',
         ]);
+//        $file = $request->file('cv');
+//        $slug = str::slug(Auth::user()->name);
+//        $destinationPath = 'uploads';
+//        $file->move($destinationPath,$file->getClientOriginalName());
+
+//        if (isset($file)) {
+//
+//            $currant_date=Carbon::now()->toDateString();
+//            $file_name=$slug.'-'.$currant_date.'-'.uniqid().'.'.$file->getClientOriginalExtension();
+//
+//            //==========Check and set Image Directory==================
+//            if (!Storage::disk('public')->exists('cv')) {
+//
+//                Storage::disk('public')->makeDirectory('cv');
+//            }
+//            Storage::putFile('public/cv/', $request->file('avatar'));
+////            Storage::disk('public')->putFile('cv/'.$file_name);
+//
+//        }else {
+//
+//            $file_name="No File found";
+//        }
+
+        $file = $request->file('cv');
+        $slug = str::slug(Auth::user()->name);
+        $currant_date=Carbon::now()->toDateString();
+        $file_name = $slug.'-'.$currant_date.'-'.uniqid().'.'.$file->getClientOriginalExtension();
+        if (!Storage::disk('public')->exists('cv')) {
+
+                Storage::disk('public')->makeDirectory('cv');
+            }
+        $destinationPath = 'storage/cv/';
+        $file->move($destinationPath,$file_name);
 
         $application = new Application();
         $application->user_id = Auth::user()->id;
@@ -52,6 +90,7 @@ class ApplicationController extends Controller
         $application->email=Auth::user()->email;
         $application->experience=$request->experience;
         $application->description=$request->description;
+        $application->cv = $file_name;
         $application->save();
 
         Toastr::success('Application submitted successfully!','success');

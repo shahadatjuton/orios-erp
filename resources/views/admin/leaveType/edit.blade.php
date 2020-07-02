@@ -34,7 +34,7 @@
                                 <input type="text"  class="form-control" name="leave_type" value="{{$data->leave_type}}">
                             </div>
                         </div>
-                        <a class="btn btn-primary m-t-15 waves-effect" href="{{route('admin.leaveType.index')}}"> Back</a>
+                        <a class="btn btn-dark m-t-15 waves-effect" href="{{route('admin.leaveType.index')}}"> Back</a>
                         <button type="submit" class="btn btn-success m-t-15 waves-effect">Submit</button>
                     </form>
                 </div>

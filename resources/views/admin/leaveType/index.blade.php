@@ -13,7 +13,7 @@
 
     <div class="container-fluid">
         <div class="block-header mb-4">
-            <a class="btn btn-primary waves-effect" href="{{route('admin.designation.create')}}">
+            <a class="btn btn-info waves-effect" href="{{route('admin.leaveType.create')}}">
                 <i class="fa fa-plus" aria-hidden="true"></i>
                 <span>Create Leave Type</span>
             </a>
@@ -44,9 +44,9 @@
                                     <tr>
                                         <td>{{ $key +1 }}</td>
                                         <td>{{$data->leave_type}}</td>
-                                        <td>{{$data->created_at}}</td>
+                                        <td>{{$data->created_at->format('dM Y')}}</td>
                                         <td>
-                                            <a class="btn btn-primary waves-effect" href="{{route('admin.leaveType.edit',$data->id)}}">
+                                            <a class="btn btn-info waves-effect" href="{{route('admin.leaveType.edit',$data->id)}}">
                                                 <i class="far fa-edit"></i>
                                             </a>
 

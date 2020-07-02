@@ -17,7 +17,7 @@
                     <a href="#staffingSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Staffing</a>
                     <ul class="collapse list-unstyled" id="staffingSubmenu">
                         <li>
-                            <a href="{{route('superadmin.jobCircular')}}">Job Applications</a>
+                            <a href="{{route('superadmin.jobCircular')}}">Job Circulars</a>
                         </li>
                         <li>
                             <a href="{{route('superadmin.application.index')}}">CV Bank</a>

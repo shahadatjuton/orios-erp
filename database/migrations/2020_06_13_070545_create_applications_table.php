@@ -14,8 +14,7 @@ class CreateApplicationsTable extends Migration
     public function up()
     {
         Schema::create('applications', function (Blueprint $table) {
-//            $table->id();
-            $table->bigIncrements('id');
+            $table->id();
             $table->integer('user_id');
             $table->string('designation');
             $table->string('department');
@@ -23,6 +22,7 @@ class CreateApplicationsTable extends Migration
             $table->string('email');
             $table->float('experience');
             $table->text('description');
+            $table->string('cv');
             $table->integer('status')->default(0);
             $table->foreign('user_id')
                 ->references('id')->on('users')

@@ -36,6 +36,7 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Status</th>
+                                    <th>View CV</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                                 </thead>
@@ -55,6 +56,11 @@
                                             Pending
                                                 @endif
                                         </td>
+                                        <td><a class="btn-info" href="{{asset('storage/cv/'.$application->cv)}}" target="_blank"> Download CV</a></td>
+{{--                                            <td>--}}
+{{--                                                <iframe class="embed-responsive-item" src="{{asset('storage/cv/'.$application->cv) }}">View</iframe>--}}
+{{--                                                <embed src= "{{asset('storage/cv/'.$application->cv) }}" width= "500" height= "375">--}}
+{{--                                            </td>--}}
                                         <td>
                                             <a class="btn btn-info waves-effect" href="{{route('superadmin.application.show', $application->id)}}">
                                                 <i class="far fa-eye"></i>
@@ -87,9 +93,8 @@
 
                                         </td>
                                     </tr>
-                                    </tr>
                                     @endforeach
-                                    </thead>
+
                             </table>
                         </div>
                     </div>

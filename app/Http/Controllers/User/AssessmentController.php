@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\User;
 
 use App\Application;
+use App\assessmentInvitation;
 use App\Http\Controllers\Controller;
 use App\interviewInvitation;
 use App\Rating;
 use App\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AssessmentController extends Controller
 {
@@ -19,9 +21,20 @@ class AssessmentController extends Controller
      */
     public function index()
     {
+        $user_id = Auth::user()->id;
+        $data = assessmentInvitation::where('user_id',$user_id)->count();
+
+
+        if($data == 1){
+
         $applicants = interviewInvitation::all();
 //      return  $user = User::findOrFail($applicants->user_id);
         return view('user.assessment.applicants',compact('applicants'));
+        }
+        else{
+            Toastr::warning('You are not invited for assessment','**Warning**');
+            return redirect()->back();
+        }
     }
 
     /**

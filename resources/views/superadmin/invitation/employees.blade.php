@@ -50,9 +50,9 @@
 {{--                                        <td>{{$employee->department}}</td>--}}
                                         <td>{{$employee->email}}</td>
                                         <td class="text-center">
-{{--                                            <a class="btn btn-info waves-effect" href="{{route('superadmin.assessment.interviwer', $employee->id)}}">--}}
-{{--                                                <i class="fas fa-mail-bulk"></i>--}}
-{{--                                            </a>--}}
+                                            <a class="btn btn-info waves-effect" href="{{route('superadmin.assessment.interviwer', $employee->id)}}">
+                                                Register Employee For Assessment
+                                            </a>
                                             <a class="btn btn-info waves-effect" href="mailto:{{$employee->email}}">
                                                 <i class="fas fa-mail-bulk"></i>
                                             </a>

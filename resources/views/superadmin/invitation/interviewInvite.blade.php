@@ -32,6 +32,16 @@
                             </div>
                         </div>
                         <div class="form-group form-float">
+                            <label for="">Select Designation</label>
+                            <div class="form-line {{ $errors->has('data') ? 'focused error' : '' }}">
+                                <select name="designation" class="form-control show-tick" data-live-searche="true" >
+                                    @foreach($designations as $designation)
+                                        <option value="{{$designation->id}}">{{ $designation->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
                             <label for="">Select Department</label>
                             <div class="form-line {{ $errors->has('data') ? 'focused error' : '' }}">
                                 <select name="department" class="form-control show-tick" data-live-searche="true" >
@@ -41,12 +51,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group form-float">
-                            <label for="">Designation</label>
-                            <div class="form-line">
-                                <input type="text"  class="form-control" name="designation" placeholder="{{old('designation')}}">
-                            </div>
-                        </div>
+
                         <div class="form-group form-float">
                             <label for="">Select Date</label>
                             <div class="form-line">
@@ -59,8 +64,8 @@
                                 <input type="time"  class="form-control" name="time" placeholder="{{old('time')}}">
                             </div>
                         </div>
-                        <a class="btn btn-danger m-t-15 waves-effect" href="{{route('superadmin.assessment.employees')}}"> Back</a>
-                        <button type="submit" class="btn btn-primary m-t-15 waves-effect">Submit</button>
+                        <a class="btn btn-dark m-t-15 waves-effect" href="{{route('superadmin.assessment.employees')}}"> Back</a>
+                        <button type="submit" class="btn btn-success m-t-15 waves-effect">Submit</button>
                     </form>
                 </div>
             </div>

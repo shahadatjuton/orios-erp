@@ -34,7 +34,7 @@
                                 <input type="text"  class="form-control" name="name" value="{{$data->name}}">
                             </div>
                         </div>
-                        <a class="btn btn-primary m-t-15 waves-effect" href="{{route('admin.designation.index')}}"> Back</a>
+                        <a class="btn btn-dark m-t-15 waves-effect" href="{{route('admin.designation.index')}}"> Back</a>
                         <button type="submit" class="btn btn-success m-t-15 waves-effect">Submit</button>
                     </form>
                 </div>

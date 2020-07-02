@@ -6,8 +6,11 @@ use App\Department;
 use App\Designation;
 use App\Http\Controllers\Controller;
 use App\Job;
+use App\Notifications\CreatedJobNotify;
+use App\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class JobController extends Controller
 {
@@ -42,6 +45,8 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $this->validate($request,[
             'designations'=>'required',
             'departments'=>'required',
@@ -64,6 +69,8 @@ class JobController extends Controller
         $job->description =$request->description;
         $job->save();
         Toastr::success('Job Requisition created successfully', 'success');
+        $user = User::where('role_id',1)->get();
+        Notification::send($user, new CreatedJobNotify($job));
         return redirect()->route('admin.dashboard');
     }
 

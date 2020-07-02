@@ -83,7 +83,7 @@
 
                 </div>
             </div>
-        </div>s
+        </div>
 
 
 {{--  ===========New  users && Vacancy===============      --}}

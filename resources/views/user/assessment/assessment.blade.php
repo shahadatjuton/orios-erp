@@ -84,63 +84,94 @@
                             <input type="hidden" name="user_id" value="{{$user->id}}">
 
                             <div class="form-group form-float">
-                                <label for="">Appearance</label>
+
+                                <label for="" style="font-size: 25px"><b>Appearance</b></label>
                                 <div class="body">
                                     <input type="radio" name="appearance" value="1">
+                                    <label for="1">Poor</label><br>
                                     <input type="radio" name="appearance" value="2">
+                                    <label for="2">Fair</label><br>
                                     <input type="radio" name="appearance" value="3">
+                                    <label for="3">Average</label><br>
                                     <input type="radio" name="appearance" value="4">
+                                    <label for="4">Good</label><br>
                                     <input type="radio" name="appearance" value="5">
+                                    <label for="5">Excellent</label><br>
                                 </div>
                             </div>
                             <div class="form-group form-float">
-                                <label for="">Eye contact & Body Language</label>
+                                <label for=""style="font-size: 25px"><b>Eye contact & Body Language</b></label>
                                 <div class="body">
                                     <input type="radio" id="1" name="body_language" value="1">
+                                    <label for="1">Poor</label><br>
                                     <input type="radio" name="body_language" value="2">
+                                    <label for="2">Fair</label><br>
                                     <input type="radio" name="body_language" value="3">
+                                    <label for="3">Average</label><br>
                                     <input type="radio" name="body_language" value="4">
+                                    <label for="4">Good</label><br>
                                     <input type="radio" name="body_language" value="5">
+                                    <label for="5">Excellent</label><br>
                                 </div>
                             </div>
                             <div class="form-group form-float">
-                                <label for="">Job Knowledge</label>
+                                <label for=""style="font-size: 25px"><b>Job Knowledge</b></label>
                                 <div class="body">
                                     <input type="radio" name="job_knowledge" value="1">
+                                    <label for="1">Poor</label><br>
                                     <input type="radio" name="job_knowledge" value="2">
+                                    <label for="2">Fair</label><br>
                                     <input type="radio" name="job_knowledge" value="3">
+                                    <label for="3">Average</label><br>
                                     <input type="radio" name="job_knowledge" value="4">
+                                    <label for="4">Good</label><br>
                                     <input type="radio" name="job_knowledge" value="5">
+                                    <label for="5">Excellent</label><br>
                                 </div>
                             </div>
                             <div class="form-group form-float">
-                                <label for="">Related Experience</label>
+                                <label for=""style="font-size: 25px"><b>Related Experience</b></label>
                                 <div class="body">
                                     <input type="radio" name="experience" value="1">
+                                    <label for="1">Poor</label><br>
                                     <input type="radio" name="experience" value="2">
+                                    <label for="2">Fair</label><br>
                                     <input type="radio" name="experience" value="3">
+                                    <label for="3">Average</label><br>
                                     <input type="radio" name="experience" value="4">
+                                    <label for="4">Good</label><br>
                                     <input type="radio" name="experience" value="5">
+                                    <label for="5">Excellent</label><br>
                                 </div>
                             </div>
                             <div class="form-group form-float">
-                                <label for="">IT Literacy</label>
+                                <label for=""style="font-size: 25px"><b>IT Literacy</b></label>
                                 <div class="body">
                                     <input type="radio" name="literacy" value="1">
+                                    <label for="1">Poor</label><br>
                                     <input type="radio" name="literacy" value="2">
+                                    <label for="2">Fair</label><br>
                                     <input type="radio" name="literacy" value="3">
+                                    <label for="3">Average</label><br>
                                     <input type="radio" name="literacy" value="4">
+                                    <label for="4">Good</label><br>
                                     <input type="radio" name="literacy" value="5">
+                                    <label for="5">Excellent</label><br>
                                 </div>
                             </div>
                             <div class="form-group form-float">
-                                <label for="">Oral Communication Skill</label>
+                                <label for=""style="font-size: 25px"><b>Oral Communication Skill</b></label>
                                 <div class="body">
                                     <input type="radio" name="communication_skill" value="1">
+                                    <label for="1">Poor</label><br>
                                     <input type="radio" name="communication_skill" value="2">
+                                    <label for="2">Fair</label><br>
                                     <input type="radio" name="communication_skill" value="3">
+                                    <label for="3">Average</label><br>
                                     <input type="radio" name="communication_skill" value="4">
+                                    <label for="4">Good</label><br>
                                     <input type="radio" name="communication_skill" value="5">
+                                    <label for="5">Excellent</label><br>
                                 </div>
                             </div>
                                 <button type="submit" class="btn btn-success m-t-15 waves-effect">Submit</button>

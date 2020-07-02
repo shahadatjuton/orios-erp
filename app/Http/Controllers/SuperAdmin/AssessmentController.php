@@ -114,8 +114,9 @@ class AssessmentController extends Controller
 
     public function interviwer($id){
         $departments = Department::all();
+        $designations = Designation::all();
         $user = User::findOrFail($id);
-        return view('superadmin.invitation.assessmentInvite',compact('user','departments'));
+        return view('superadmin.invitation.assessmentInvite',compact('user','departments','designations'));
     }
 
 
@@ -133,15 +134,16 @@ class AssessmentController extends Controller
             'date'=>'required',
             'time'=>'required',
         ]);
-
+        $designation = Designation::findOrFail($request->designation);
+        $department = Department::findOrFail($request->department);
         $data = new assessmentInvitation();
         $data->user_id = $request->user_id;
-        $data->designation = $request->designation;
-        $data->department = $request->department;
+        $data->designation = $designation->name;
+        $data->department = $department->name;
         $data->date = $request->date;
         $data->time = $request->time;
         $data->save();
-        Toastr::success('Invitation send successfully!','success');
+        Toastr::success('Invitation sent successfully!','success');
         return redirect()->route('superadmin.assessment.employees');
 
     }
@@ -160,7 +162,8 @@ class AssessmentController extends Controller
         $application = Application::findOrFail($id);
         $user = User::findOrFail($application->user_id);
         $departments = Department::all();
-        return view('superadmin.invitation.interviewInvite',compact('application','user','departments'));
+        $designations = Designation::all();
+        return view('superadmin.invitation.interviewInvite',compact('application','user','departments','designations'));
     }
 
     public function applicantInvitation(Request $request)
@@ -171,15 +174,16 @@ class AssessmentController extends Controller
             'date'=>'required',
             'time'=>'required',
         ]);
-
+        $designation = Designation::findOrFail($request->designation);
+        $department = Department::findOrFail($request->department);
         $data = new interviewInvitation();
         $data->user_id = $request->user_id;
-        $data->designation = $request->designation;
-        $data->department = $request->department;
+        $data->designation = $designation->name;
+        $data->department = $department->name;
         $data->date = $request->date;
         $data->time = $request->time;
         $data->save();
-        Toastr::success('Invitation send successfully!','success');
+        Toastr::success('Invitation sent successfully!','success');
         return redirect()->route('superadmin.assessment.applications');
 
     }

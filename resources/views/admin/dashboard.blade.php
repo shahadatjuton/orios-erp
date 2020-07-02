@@ -100,6 +100,7 @@
 
             {{--            Right Card --}}
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <h2 class="text-center bg-info">New Faces</h2>
                 <div class="row clearfix">
                     @foreach($user as $user)
                         @php

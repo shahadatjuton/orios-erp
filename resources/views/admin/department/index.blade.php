@@ -13,7 +13,7 @@
 
     <div class="container-fluid">
         <div class="block-header mb-4">
-            <a class="btn btn-primary waves-effect" href="{{route('admin.department.create')}}">
+            <a class="btn btn-info waves-effect" href="{{route('admin.department.create')}}">
                 <i class="fa fa-plus" aria-hidden="true"></i>
                 <span>Create Department</span>
             </a>
@@ -44,7 +44,7 @@
                                     <tr>
                                         <td>{{ $key +1 }}</td>
                                         <td>{{$data->name}}</td>
-                                        <td>{{$data->created_at}}</td>
+                                        <td>{{$data->created_at->format('dM Y')}}</td>
                                         <td>
                                             <a class="btn btn-info waves-effect" href="{{route('admin.department.edit',$data->id)}}">
                                                 <i class="far fa-edit"></i>

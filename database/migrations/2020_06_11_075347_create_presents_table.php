@@ -14,8 +14,7 @@ class CreatePresentsTable extends Migration
     public function up()
     {
         Schema::create('presents', function (Blueprint $table) {
-//            $table->id();
-            $table->bigIncrements('id');
+            $table->id();
             $table->unsignedBigInteger('user_id');
             $table->boolean('attendance');
             $table->foreign('user_id')

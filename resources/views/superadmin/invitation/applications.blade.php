@@ -52,17 +52,19 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a class="btn btn-info waves-effect" href="{{route('superadmin.application.show', $application->id)}}">
-                                            <i class="material-icons">visibility </i>
-                                        </a>
+{{--                                        <a class="btn btn-info waves-effect" href="{{route('superadmin.application.show', $application->id)}}">--}}
+{{--                                            <i class="material-icons">visibility </i>--}}
+{{--                                        </a>--}}
                                         <a class="btn btn-info waves-effect" href="{{route('superadmin.assessment.applicant', $application->id)}}">
-                                            <i class="material-icons">Invite </i>
+                                            <i class="material-icons">Register Applicant For Interview </i>
+                                        </a>
+                                        <a class="btn btn-info waves-effect" href="mailto:{{$application->email}}">
+                                            <i class="fas fa-mail-bulk"></i>
                                         </a>
                                     </td>
                                 </tr>
-                                </tr>
                                 @endforeach
-                                </thead>
+
                         </table>
                     </div>
                 </div>
