@@ -74,7 +74,7 @@
                                             <a class="btn btn-info waves-effect" href="mailto:{{$applicant->email}}">
                                                 <i class="fas fa-mail-bulk"></i>
                                             </a>
-                                            
+
 {{--                                            <a class="btn btn-info waves-effect" href="{{route('superadmin.appointmentLetter',$result->id)}}">--}}
 {{--                                                <i class="fas fa-mail-bulk"></i>--}}
 {{--                                            </a>--}}

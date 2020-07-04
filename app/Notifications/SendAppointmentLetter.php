@@ -47,8 +47,8 @@ class SendAppointmentLetter extends Notification
                     ->subject('Appointment Letter')
                     ->line('This is to inform you that you are selected for '.$this->application->designation.
                         ' post under '. $this->application->department. ' department.')
-                    ->line('You are warmly welcome to join with us on '. $this->date)
-                    ->line('We are eagerly waiting for your join. Thank you!');
+                    ->line('You are warmly welcome to join with us on '. $this->date.
+                        'We are eagerly waiting for your join. Thank you!');
     }
 
     /**

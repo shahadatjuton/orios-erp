@@ -166,10 +166,8 @@ class AssessmentController extends Controller
      */
     public function employees()
     {
-        $roles = [1,2];
-      return  $employees = User::where('role_id',$roles )->get();
+        $employees = User::where('role_id', 1 )->get();
         return view('superadmin.invitation.employees',compact('employees'));
-
     }
 
     public function interviwer($id){

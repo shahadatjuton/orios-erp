@@ -104,15 +104,15 @@
                         </li>
                     </ul>
                 </li>
-                <li class="">
-                    <a href="#assessSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Onboarding</a>
-                    <ul class="collapse list-unstyled" id="assessSubmenu">
-                        <li>
-                            <a href="{{route('admin.assessment.index')}}">Invited Applicants</a>
-                        </li>
+{{--                <li class="">--}}
+{{--                    <a href="#assessSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Onboarding</a>--}}
+{{--                    <ul class="collapse list-unstyled" id="assessSubmenu">--}}
+{{--                        <li>--}}
+{{--                            <a href="{{route('admin.assessment.index')}}">Invited Applicants</a>--}}
+{{--                        </li>--}}
 
-                    </ul>
-                </li>
+{{--                    </ul>--}}
+{{--                </li>--}}
 
                 <li class="leave">
                     <a href="#leaveSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Leave</a>
