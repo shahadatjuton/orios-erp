@@ -166,7 +166,7 @@ class AssessmentController extends Controller
      */
     public function employees()
     {
-        $employees = User::where('role_id', 1 )->get();
+        $employees = User::where('role_id', 1 )->orWhere('role_id',2)->get();
         return view('superadmin.invitation.employees',compact('employees'));
     }
 
@@ -287,31 +287,34 @@ class AssessmentController extends Controller
 //            'image'=>'required',
         ]);
 //
-//        $image = $request->file('image');
-//        $slug = str::slug($request->name);
-//
-//        if (isset($image)) {
-//
-//            $currant_date = Carbon::now()->toDateString();
-//            $image_name = $slug.'-'.$currant_date.'-'.uniqid().'.'.$image->getClientOriginalExtension();
-//
-//            //==========Check and set Image Directory==================
-//
-//            if (!Storage::disk('public')->exists('Profile')) {
-//
-//                Storage::disk('public')->makeDirectory('Profile');
-//
-//            }
-//            //==========Make new image ==================
-//
+        $image = $request->file('image');
+        $slug = str::slug($request->name);
+
+        if (isset($image)) {
+
+            $currant_date = Carbon::now()->toDateString();
+            $image_name = $slug.'-'.$currant_date.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+
+            //==========Check and set Image Directory==================
+
+
+            if (!Storage::disk('public')->exists('Profile')) {
+
+                Storage::disk('public')->makeDirectory('Profile');
+
+            }
+            //==========Make new image ==================
+
 //            $imageSize=Image::make($image)->resize(1600,1066)->save($image->getClientOriginalExtension());
-//
-//            Storage::disk('public')->put('Profile/'.$image_name,$imageSize);
-//
-//        }else {
-//
-//            $image_name= "default.png";
-//        }
+//            $image_size =  $image->getSize();
+//            Storage::disk('public')->put('Profile/'.$image_name, $image_size);
+            $destinationPath = 'storage/Profile/';
+            $image->move($destinationPath, $image_name);
+
+        }else {
+
+            $image_name= "default.png";
+        }
 
 
         $user =new User();
@@ -323,7 +326,7 @@ class AssessmentController extends Controller
         $user->name= $request->name;
         $user->email =$request->email;
         $user->password = Hash::make($request->password);
-        $user->image = "default.png";
+        $user->image = $image_name;
         $user->role_id = $role_id;
         $user->save();
         Toastr::success('New user created successfully', 'success');

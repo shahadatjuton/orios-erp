@@ -104,15 +104,15 @@
                         </li>
                     </ul>
                 </li>
-{{--                <li class="">--}}
-{{--                    <a href="#assessSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Onboarding</a>--}}
-{{--                    <ul class="collapse list-unstyled" id="assessSubmenu">--}}
-{{--                        <li>--}}
-{{--                            <a href="{{route('admin.assessment.index')}}">Invited Applicants</a>--}}
-{{--                        </li>--}}
+                <li class="">
+                    <a href="#assessSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Onboarding</a>
+                    <ul class="collapse list-unstyled" id="assessSubmenu">
+                        <li>
+                            <a href="{{route('admin.assessment.index')}}">Invited Applicants</a>
+                        </li>
 
-{{--                    </ul>--}}
-{{--                </li>--}}
+                    </ul>
+                </li>
 
                 <li class="leave">
                     <a href="#leaveSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Leave</a>
@@ -211,6 +211,14 @@
                         <li>
                             <a href="{{route('user.leave.create')}}">Leave Application </a>
                         </li>
+                        <li>
+                            <a href="{{route('user.attendance.report')}}">Own Attendance Report </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="">
+                    <a href="#attendanceSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Attendance</a>
+                    <ul class="collapse list-unstyled" id="attendanceSubmenu">
                         <li>
                             <a href="{{route('user.attendance.report')}}">Own Attendance Report </a>
                         </li>

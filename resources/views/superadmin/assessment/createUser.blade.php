@@ -82,12 +82,12 @@
                                 </select>
                             </div>
                         </div>
-                        {{--                            <div class="form-group form-float">--}}
-                        {{--                                <label><b>Upload Image</b></label>--}}
-                        {{--                                <div class="form-line">--}}
-                        {{--                                    <input type="file"  class="form-control" name="image" >--}}
-                        {{--                                </div>--}}
-                        {{--                            </div>--}}
+                        <div class="form-group form-float">
+                            <label><b>Upload Image</b></label>
+                            <div class="form-line">
+                                <input type="file"  class="form-control" name="image" >
+                            </div>
+                        </div>
                         <button type="submit" class="btn btn-success m-t-15 waves-effect">Save</button>
                     </form>
                 </div>
