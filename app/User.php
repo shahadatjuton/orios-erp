@@ -64,11 +64,11 @@ class User extends Authenticatable
     }
 
     public function designation(){
-        return $this->hasMany('App\Designation');
+        return $this->belongsTo('App\Designation');
     }
 
     public function department(){
-        return $this->hasMany('App\Department');
+        return $this->belongsTo('App\Department');
     }
 
 

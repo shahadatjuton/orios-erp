@@ -320,6 +320,7 @@ class AssessmentController extends Controller
         $user =new User();
         $designation_id = implode(',',$request->designations);
         $department_id = implode(',',$request->departments);
+
         $role_id = implode(',',$request->roles);
         $user->designation    = $designation_id;
         $user->department     = $department_id;

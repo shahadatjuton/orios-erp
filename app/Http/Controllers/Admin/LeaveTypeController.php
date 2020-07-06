@@ -46,7 +46,7 @@ class LeaveTypeController extends Controller
         $data->leave_type = $request->leave_type;
         $data->save();
         Toastr::success('Leave Type created successfully!','success');
-        return redirect()->route('home');
+        return redirect()->route('admin.leaveType.index');
     }
 
     /**
@@ -98,9 +98,8 @@ class LeaveTypeController extends Controller
      */
     public function destroy($id)
     {
-        return "ok";
-        return $id;
-       return $data= LeaveType::find($id);
+
+        $data= LeaveType::find($id);
         $data->delete();
         Toastr::success('Data deleted successfully!', 'success');
         return redirect()->route('admin.leaveType.index');

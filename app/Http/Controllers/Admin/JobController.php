@@ -46,7 +46,6 @@ class JobController extends Controller
     public function store(Request $request)
     {
 
-
         $this->validate($request,[
             'designations'=>'required',
             'departments'=>'required',
@@ -70,7 +69,7 @@ class JobController extends Controller
         $job->save();
         Toastr::success('Job Requisition created successfully', 'success');
         $user = User::where('role_id',1)->get();
-        Notification::send($user, new CreatedJobNotify($job));
+//        Notification::send($user, new CreatedJobNotify($job));
         return redirect()->route('admin.dashboard');
     }
 
@@ -116,6 +115,9 @@ class JobController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $job = Job::find($id);
+        $job->delete();
+        toastr::success('Data is deleted successfully!!','success');
+        return redirect()->back();
     }
 }

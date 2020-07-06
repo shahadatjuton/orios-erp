@@ -111,7 +111,6 @@
                 <div class="row section-heading justify-content-center mb-5">
                     <div class="col-md-8 text-center">
                         <h2 class="heading mb-3">Find your suitable job</h2>
-                        <p class="sub-heading mb-5">Free Website Template For Restaurants Made by Colorlib</p>
                     </div>
                 </div>
                 <div class="row justify-content-center">

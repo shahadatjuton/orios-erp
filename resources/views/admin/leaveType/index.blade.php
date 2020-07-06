@@ -53,7 +53,7 @@
                                             <button type="button" name="button"  class="btn btn-danger waves-effect" onclick="deleteleavetype({{$data->id}})">
                                                 <i class="fas fa-trash-alt"></i>
                                             </button>
-                                            <form  id="delete-leave-type-{{$data->id}}" action="{{route('admin.leaveType.edit', $data->id)}}"
+                                            <form  id="delete-leave-type-{{$data->id}}" action="{{route('admin.leaveType.destroy', $data->id)}}"
                                                    method="post" style="display:none;">
                                                 @csrf
                                                 @method('DELETE')

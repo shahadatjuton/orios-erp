@@ -64,7 +64,7 @@
                                                 <i class="fas fa-trash" ></i>
 
                                             </button>
-                                            <form  id="delete-department-{{$job->id}}" action="{{route('admin.department.destroy', $job->id)}}"
+                                            <form  id="delete-department-{{$job->id}}" action="{{route('admin.job.destroy', $job->id)}}"
                                                    method="post" style="display:none;"
                                             >
                                                 @csrf

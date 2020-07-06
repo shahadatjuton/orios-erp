@@ -113,18 +113,21 @@
                             <div class="header text-center" >
                                 <img src="{{asset('storage/Profile/'.$user->image)}}" alt="{{$user->name}}"  class="img-fluid" style="height: 70px; width: 80px;">
                             </div>
-                            <div class="body" style="margin: 10px;">
-                                <ul>
-                                    <li>
-                                        {{$user->name}}
-                                    </li>
-                                    <li>
-                                        {{$designation->name}}
-                                    </li>
-                                    <li>
-                                        {{$department->name}}
-                                    </li>
-                                </ul>
+                            <div class="body text-center" style="margin: 10px;">
+                                <h4>{{$user->name}}</h4>
+                                <p>{{$designation->name}}</p>
+                                <p>{{$department->name}}</p>
+{{--                                <ul>--}}
+{{--                                    <li>--}}
+{{--                                        {{$user->name}}--}}
+{{--                                    </li>--}}
+{{--                                    <li>--}}
+{{--                                        {{$designation->name}}--}}
+{{--                                    </li>--}}
+{{--                                    <li>--}}
+{{--                                        {{$department->name}}--}}
+{{--                                    </li>--}}
+{{--                                </ul>--}}
                             </div>
                         </div>
                     </div>

@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Auth;
 class DashboardController extends Controller
 {
     public function index(){
-        $user = User::latest()->limit(2)->get();
+        $user = User::where('role_id',3)->latest()->limit(2)->get();
         $vacancy = Job::where('status',true)->latest()->limit(4)->get();
         $current_time = \Carbon\Carbon::now()->toDateString();
         $present = Auth::user()->presents()->latest()->first();

@@ -62,6 +62,7 @@ class LeaveController extends Controller
 
         $user_id =Auth::user()->id;
         $leave =new Leave();
+        $leave->user_id = Auth::user()->id;
         $leave->leave_type_id =implode(',',$request->leave_type);
         $leave->emp_name= Auth::user()->name;
         $leave->str_date= $request->str_date;
