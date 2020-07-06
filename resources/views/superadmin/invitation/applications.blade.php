@@ -56,7 +56,7 @@
 {{--                                            <i class="material-icons">visibility </i>--}}
 {{--                                        </a>--}}
                                         <a class="btn btn-info waves-effect" href="{{route('superadmin.assessment.applicant', $application->id)}}">
-                                            <i class="material-icons">Register Applicant For Interview </i>
+                                            <i class="material-icons">Invite Applicant </i>
                                         </a>
                                         <a class="btn btn-info waves-effect" href="mailto:{{$application->email}}">
                                             <i class="fas fa-mail-bulk"></i>

@@ -82,7 +82,7 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="body">
-                        <h2 class="text-center bg-info">New Job Vacancy</h2>
+                        <h2 class="mt-2 mb-4 ml-4">New Job Vacancy</h2>
                         <div class="row">
                             @foreach($vacancy as $vacancy)
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
@@ -95,7 +95,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>s
             </div>
 
 
@@ -103,7 +103,7 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="body">
-                        <h2 class="text-center bg-info">New Faces</h2>
+                        <h2 class="mt-2 mb-4 ml-4">New Faces</h2>
                         <div class="row">
                             @foreach($user as $user)
                                 @php

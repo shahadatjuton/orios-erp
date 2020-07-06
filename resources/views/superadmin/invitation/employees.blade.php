@@ -51,7 +51,7 @@
                                         <td>{{$employee->email}}</td>
                                         <td class="text-center">
                                             <a class="btn btn-info waves-effect" href="{{route('superadmin.assessment.interviwer', $employee->id)}}">
-                                                Register Employee For Assessment
+                                                Invite Interviewer
                                             </a>
                                             <a class="btn btn-info waves-effect" href="mailto:{{$employee->email}}">
                                                 <i class="fas fa-mail-bulk"></i>
