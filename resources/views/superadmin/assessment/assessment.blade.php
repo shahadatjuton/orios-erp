@@ -3,6 +3,7 @@
 @section('title','Assessment')
 
 @push ('css')
+
     <style>
         ul li{
             list-style: none;
@@ -17,7 +18,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <h2 class="text-center">Applicant Information</h2>
+        <h2 class="text-center">Applicant's Information</h2>
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
@@ -68,9 +69,9 @@
        <h2 class="text-center" style="margin: 20px;">Assess the candidate based on Criteria</h2>
 
         <div class="row clearfix">
-            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+            <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12">
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="col-lg-10 col-md-6 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="header">
                     </div>
@@ -103,21 +104,22 @@
                             <input type="hidden" name="designation" value="{{$applicant->designation}}">
                             <input type="hidden" name="department" value="{{$applicant->department}}">
                             <input type="hidden" name="user_id" value="{{$user->id}}">
+                            
 
-                            <div class="form-group form-float">
+                            <div class="form-group form-float ">
 
-                                <label for="" style="font-size: 25px"><b>Appearance</b></label>
+                                <label for="" style="font-size: 25px;" class="radio-inline"><b>Appearance</b></label>
                                 <div class="body">
                                     <input type="radio" name="appearance" value="1">
-                                    <label for="1">Poor</label><br>
+                                    <label for="1" class="radio-inline">Poor</label><br>
                                     <input type="radio" name="appearance" value="2">
-                                    <label for="2">Fair</label><br>
+                                    <label for="2" class="radio-inline">Fair</label><br>
                                     <input type="radio" name="appearance" value="3">
-                                    <label for="3">Average</label><br>
+                                    <label for="3" class="radio-inline">Average</label><br>
                                     <input type="radio" name="appearance" value="4">
-                                    <label for="4">Good</label><br>
+                                    <label for="4" class="radio-inline">Good</label><br>
                                     <input type="radio" name="appearance" value="5">
-                                    <label for="5">Excellent</label><br>
+                                    <label for="5" class="radio-inline">Excellent</label><br>
                                 </div>
                             </div>
                             <div class="form-group form-float">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\SuperAdmin;
 
 use App\Application;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
 class ApplicationController extends Controller
@@ -96,8 +97,8 @@ class ApplicationController extends Controller
     public function reject(Request $request, $id)
     {
         $application = Application::find($id);
-        $application->status = 2;
-        $application->save();
+        $application->delete();
+        Toastr::success('Data is deleted successfully!','success');
         return redirect()->back();
     }
 

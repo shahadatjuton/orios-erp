@@ -81,7 +81,7 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="body">
-                        <h2 class="text-center bg-info">**New Job Vacancy**</h2>
+                        <h2 class="text-center bg-info">New Job Vacancy</h2>
                         <div class="row">
                             @foreach($vacancy as $vacancy)
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
@@ -99,43 +99,33 @@
 
 
             {{--            Right Card --}}
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <h2 class="text-center bg-info">New Faces</h2>
-                <div class="row clearfix">
-                    @foreach($user as $user)
-                        @php
-                         $designation = \App\Designation::findOrFail($user->designation);
-                        $department = \App\Department::findOrFail($user->department);
 
-                        @endphp
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <div class="card">
-                            <div class="header text-center" >
-                                <img src="{{asset('storage/Profile/'.$user->image)}}" alt="{{$user->name}}"  class="img-fluid" style="height: 70px; width: 80px;">
-                            </div>
-                            <div class="body text-center" style="margin: 10px;">
-                                <h4>{{$user->name}}</h4>
-                                <p>{{$designation->name}}</p>
-                                <p>{{$department->name}}</p>
-{{--                                <ul>--}}
-{{--                                    <li>--}}
-{{--                                        {{$user->name}}--}}
-{{--                                    </li>--}}
-{{--                                    <li>--}}
-{{--                                        {{$designation->name}}--}}
-{{--                                    </li>--}}
-{{--                                    <li>--}}
-{{--                                        {{$department->name}}--}}
-{{--                                    </li>--}}
-{{--                                </ul>--}}
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="body">
+                        <h2 class="text-center bg-info">New Faces</h2>
+                        <div class="row">
+                            @foreach($user as $user)
+                                @php
+                                    $designation = \App\Designation::findOrFail($user->designation);
+                                   $department = \App\Department::findOrFail($user->department);
+
+                                @endphp
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
+                                    <img src="{{asset('storage/Profile/'.$user->image)}}" alt="{{$user->name}}"  class="img-fluid" style="height: 70px; width: 80px;">
+                                    <h4>{{$user->name}}</h4>
+                                    <p>{{$designation->name}}</p>
+                                    <p>{{$department->name}}</p>
+                                </div>
+                            @endforeach
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
                             </div>
                         </div>
                     </div>
-                    @endforeach
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    </div>
                 </div>
-        </div>
+            </div>
+
 
 
 
