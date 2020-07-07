@@ -27,16 +27,21 @@
                         </div>
                         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                             <ul class="list">
-                                <h4>**New Job Circular** </h4>
+                                <h4>New Job Circular </h4>
 
                                 @forelse($circulars as $circular)
+                                    @if($circular->deadline > \Carbon\Carbon::now())
                                     <li class="mt-4">
-                                     <span>Post <b>{{$circular->designation->name}}</b>
-                                     Vacancy = <b>{{$circular->vacancy}}</b>
-                                     Deadline <b>{{$circular->deadline->toDateString()}}</b>
-                                     To apply <a href="{{route('applicant.application.show',$circular->id)}}" class="btn btn-primary">Click Here</a>
+                                        <p><span>Post :</span> <b>{{$circular->designation->name}}</b> </p>
+                                        <p><span>Vacancy :</span> <b>{{$circular->vacancy}}</b> </p>
+                                        <p><span>Deadline :</span> <b>{{$circular->deadline->toDateString()}}</b> </p>
+                                        <p><span>To apply</span> <a href="{{route('applicant.application.show',$circular->id)}}" class="btn btn-primary">Click Here</a>
+                                        </p>
                                     </li>
+                                        <hr>
+                                    @endif
                                 @empty
+
                                     <div>
                                         <h2>There is no data available!</h2>
                                     </div>

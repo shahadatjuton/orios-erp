@@ -47,6 +47,7 @@ class ApplicationController extends Controller
         $this->validate($request,[
             'designation'=>'required',
             'description'=>'required',
+            "cv" => "required|mimes:pdf|max:10000",
         ]);
 //        $file = $request->file('cv');
 //        $slug = str::slug(Auth::user()->name);
@@ -106,6 +107,7 @@ class ApplicationController extends Controller
     public function show($id)
     {
         $job = Job::findOrFail($id);
+        $user_id = Auth::user()->id;
         return view('applicant.application',compact('job'));
     }
 

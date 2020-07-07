@@ -28,6 +28,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
+                                    <th>Leave Type</th>
                                     <th>Start Date</th>
                                     <th>End Date</th>
                                     <th>Status</th>
@@ -35,18 +36,23 @@
                                 </tr>
                                 </thead>
                                 @foreach($applications as $key=> $application)
+                                    @php
+                                        $user = \App\User::findOrFail($application->user_id);
+                                        $leave_type = \App\LeaveType::findOrFail($application->leave_type_id);
+                                    @endphp
                                     <tr>
                                         <td>{{ $key +1 }}</td>
                                         <td>{{$application->emp_name}}</td>
+                                        <td>{{$leave_type->leave_type}}</td>
                                         <td>{{$application->str_date->format('dM Y')}}</td>
                                         <td>{{$application->end_date->format('dM Y')}}</td>
                                         <td>
                                             @if($application->status == 1)
-                                                Accepted
+                                                <p class="bg-success text-center">Accepted</p>
                                             @elseif($application->status == 2)
-                                                Rejected
+                                                <p class="bg-danger text-center">Rejected</p>
                                             @else
-                                                Pending
+                                                <p class="bg-warning text-center">Pending</p>
                                             @endif
                                         </td>
                                         <td>

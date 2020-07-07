@@ -31,18 +31,16 @@ class AssessmentController extends Controller
      */
     public function index()
     {
+        $ratings = Rating::all();
         $user_id = Auth::user()->id;
         $data = assessmentInvitation::where('user_id',$user_id)->count();
-
-
         if($data == 1){
-
             $applicants = interviewInvitation::all();
 //      return  $user = User::findOrFail($applicants->user_id);
-            return view('superadmin.assessment.applicants',compact('applicants'));
+            return view('superadmin.assessment.applicants',compact('applicants','ratings'));
         }
         else{
-            Toastr::warning('You are not invited for assessment','**Warning**');
+            Toastr::warning('You are not invited for assessment','Warning');
             return redirect()->back();
         }
     }
@@ -85,7 +83,7 @@ class AssessmentController extends Controller
         $user = User::findOrFail($request->user_id);
         $rating = new Rating();
 
-        $rating->name= $user->name;
+        $rating->user_id= $user->id;
         $rating->application_id=$request->applicant_id;
         $rating->designation =$request->designation;
         $rating->department =$request->department;

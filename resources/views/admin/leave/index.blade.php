@@ -35,7 +35,6 @@
                                     <th>Leave Type</th>
                                     <th>From Date</th>
                                     <th>To Date</th>
-                                    <th>Details</th>
                                     <th>Status</th>
                                 </tr>
                                 </thead>
@@ -44,17 +43,17 @@
                                         <td>{{ $key +1 }}</td>
                                         <td>{{$leave->emp_name}}</td>
                                         <td>{{$leave->leaveType->leave_type}}</td>
-                                        <td>{{$leave->str_date}}</td>
-                                        <td>{{$leave->end_date}}</td>
-                                        <td>Details</td>
+                                        <td>{{$leave->str_date->toDateString()}}</td>
+                                        <td>{{$leave->end_date->toDateString()}}</td>
+
                                         <td>
-                                            @if($leave->status==true)
-                                             Accepted
-                                             @elseif($leave->status==false)
-                                            Rejected
-                                             @else
-                                            Pending
-                                             @endif
+                                            @if($leave->status == 1)
+                                                <p class="bg-success text-center">Accepted</p>
+                                            @elseif($leave->status == 2)
+                                                <p class="bg-danger text-center">Rejected</p>
+                                            @else
+                                                <p class="bg-warning text-center">Pending</p>
+                                            @endif
                                         </td>
                                     </tr>
                                     @endforeach

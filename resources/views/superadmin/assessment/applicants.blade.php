@@ -53,6 +53,7 @@
                             </thead>
 
                             @foreach($applicants as $key=> $applicant)
+
                                 @php
                                     $user = \App\User::find($applicant->user_id);
                                     $department = \App\Department::find($applicant->department);
@@ -66,7 +67,7 @@
                                     <td>{{$user->email}}</td>
                                     <td>
                                         <a class="btn btn-info waves-effect" href="{{route('superadmin.assessment.show', $applicant->id)}}">
-                                            <i class="material-icons">Assessment </i>
+                                            <i class="material-icons">Assessment</i>
                                         </a>
                                     </td>
                                 </tr>
