@@ -17,7 +17,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <h2 class="text-center">Applicant Information</h2>
+        <h2 class="text-center">Applicant's Information</h2>
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
