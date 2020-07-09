@@ -51,7 +51,11 @@
                                 </select>
                             </div>
                         </div>
-
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="hidden"  class="form-control" name="application_id">
+                            </div>
+                        </div>
                         <div class="form-group form-float">
                             <label for="">Select Date</label>
                             <div class="form-line">

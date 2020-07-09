@@ -35,7 +35,7 @@ class AssessmentController extends Controller
         $user_id = Auth::user()->id;
         $data = assessmentInvitation::where('user_id',$user_id)->count();
         if($data == 1){
-            $applicants = interviewInvitation::all();
+            $applicants = interviewInvitation::where('is_marked',false)->get();
 //      return  $user = User::findOrFail($applicants->user_id);
             return view('superadmin.assessment.applicants',compact('applicants','ratings'));
         }
@@ -63,6 +63,7 @@ class AssessmentController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate($request,[
             'appearance'=>'required',
             'body_language'=>'required',
@@ -77,6 +78,10 @@ class AssessmentController extends Controller
             'expected_joining_date'=>'required',
             'proposed_joining_date'=>'required',
         ]);
+
+        $interview_invitation = interviewInvitation::findOrFail($request->applicant_id);
+        $interview_invitation->is_marked = true;
+        $interview_invitation->save();
 
         $total= $request->appearance + $request->body_language + $request->job_knowledge +
             $request->experience + $request->literacy +$request->communication_skill;
@@ -234,6 +239,7 @@ class AssessmentController extends Controller
         $department = Department::findOrFail($request->department);
         $data = new interviewInvitation();
         $data->user_id = $request->user_id;
+        $data->application_id = $request->application_id;
         $data->designation = $designation->name;
         $data->department = $department->name;
         $data->date = $request->date;

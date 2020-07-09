@@ -280,13 +280,13 @@
                                             <label for=""><b>Action</b></label>
                                             <div class="body radio">
                                                 <label for="1" class="radio-inline">
-                                                    <input type="radio" name="experience" value="1">Select
+                                                    <input type="radio" name="action" value="1">Select
                                                 </label>
                                                 <label for="2" class="radio-inline">
-                                                    <input type="radio" name="experience" value="2">Reject
+                                                    <input type="radio" name="action" value="2">Reject
                                                 </label>
                                                 <label for="3" class="radio-inline">
-                                                    <input type="radio" name="experience" value="3">Hold
+                                                    <input type="radio" name="action" value="3">Hold
                                                 </label>
                                             </div>
                                         </div>

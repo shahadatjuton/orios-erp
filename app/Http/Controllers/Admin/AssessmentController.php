@@ -26,7 +26,7 @@ class AssessmentController extends Controller
 
         if($data == 1){
 
-            $applicants = interviewInvitation::all();
+              $applicants = interviewInvitation::where('is_marked',false)->get();
 //      return  $user = User::findOrFail($applicants->user_id);
             return view('admin.assessment.applicants',compact('applicants'));
         }
@@ -68,6 +68,11 @@ class AssessmentController extends Controller
             'expected_joining_date'=>'required',
             'proposed_joining_date'=>'required',
         ]);
+
+        $interview_invitation = interviewInvitation::findOrFail($request->applicant_id);
+        $interview_invitation->is_marked = true;
+        $interview_invitation->save();
+
 
         $total= $request->appearance + $request->body_language + $request->job_knowledge +
             $request->experience + $request->literacy +$request->communication_skill;
