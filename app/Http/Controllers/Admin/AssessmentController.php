@@ -23,7 +23,6 @@ class AssessmentController extends Controller
         $user_id = Auth::user()->id;
         $data = assessmentInvitation::where('user_id',$user_id)->count();
 
-
         if($data == 1){
 
               $applicants = interviewInvitation::where('is_marked',false)->get();
@@ -79,7 +78,7 @@ class AssessmentController extends Controller
         $user = User::findOrFail($request->user_id);
         $rating = new Rating();
 
-        $rating->name= $user->name;
+        $rating->user_id= $user->id;
         $rating->application_id=$request->applicant_id;
         $rating->designation =$request->designation;
         $rating->department =$request->department;

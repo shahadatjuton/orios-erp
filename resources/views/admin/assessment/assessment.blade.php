@@ -88,7 +88,7 @@
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <div class="card">
                             <div class="body">
-                                <form action="{{route('superadmin.assessment.store')}}" method="post" enctype="multipart/form-data">
+                                <form action="{{route('admin.assessment.store')}}" method="post" enctype="multipart/form-data">
                                     @csrf
 
                                     <input type="hidden" name="applicant_id" value="{{$applicant->id}}">
