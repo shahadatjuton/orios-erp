@@ -57,7 +57,6 @@
                                     $user = \App\User::find($applicant->user_id);
                                     $department = \App\Department::find($applicant->department);
                                 @endphp
-
                                 <tr>
                                     <td>{{ $key +1 }}</td>
                                     <td>{{$applicant->designation}}</td>

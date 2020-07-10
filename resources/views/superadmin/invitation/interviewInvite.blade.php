@@ -68,6 +68,11 @@
                                 <input type="time"  class="form-control" name="time" placeholder="{{old('time')}}">
                             </div>
                         </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="hidden"  class="form-control" name="application_id" value="{{$application->id}}">
+                            </div>
+                        </div>
                         <a class="btn btn-dark m-t-15 waves-effect" href="{{route('superadmin.assessment.employees')}}"> Back</a>
                         <button type="submit" class="btn btn-success m-t-15 waves-effect">Submit</button>
                     </form>

@@ -215,7 +215,7 @@ class AssessmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function applications(){
-        $applications = Application::where('status',1)->get();
+        $applications = Application::where('status',1)->where('is_select', false)->get();
         return view('superadmin.invitation.applications',compact('applications'));
     }
 
@@ -235,6 +235,11 @@ class AssessmentController extends Controller
             'date'=>'required',
             'time'=>'required',
         ]);
+
+        $application = Application::findOrFail($request->application_id);
+        $application->is_select = true;
+        $application->save();
+
         $designation = Designation::findOrFail($request->designation);
         $department = Department::findOrFail($request->department);
         $data = new interviewInvitation();
